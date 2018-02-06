@@ -1,0 +1,10 @@
+@import "src/utilities/_variables";
+
+.main {
+  background: #341530;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: center;
+  color: $white;
+}

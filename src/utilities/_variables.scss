@@ -1,0 +1,71 @@
+$space_extra_thin: 5px;
+$space_thin: 10px;
+$space_medium: 15px;
+$space_extra_medium: 20px;
+$space_fat: 30px;
+$space_extra_fat: 60px;
+
+$font_huge: 2.4em;
+$font_extra_large: 1.6em;
+$font_large_inscription: 1.5em;
+$font_large: 1.2em;
+$font_medium: 1em;
+$font_small: 0.8em;
+$font_extra_small: 0.6em;
+$font_light: 200;
+$font_regular: 400;
+$font_semibold: 600;
+$font_bold: 700;
+
+$line_height_narrow: 15px;
+
+/* alto minimo para el contenedor central de la pagina. 308px = alto del header + alto del footer */
+$min_height: calc(100vh - 308px);
+$min_height_without_header: calc(100vh - 158px);
+
+$font_family: 'Open Sans', sans-serif;
+$font_color: #4d4d4d;
+
+$dark_gray: #979797;
+$gray: #e9e9e9;
+$light_gray: #f7f7f8;
+$light_gray_border: #e1e1e1;
+$dark_gray_border: #ced4da;
+$white: #fff;
+$black: #000;
+$blue: #019fee;
+$blue_hover: darken(#019fee, 5%);
+$dark_blue: #003f6d;
+$pink: #ff009c;
+$pink_hover: darken(#ff009c, 5%);
+$turquoise: #17c7d2;
+$secondary_grey: #807f80;
+$red_error: #a94442;
+
+$border_radius: 4px;
+
+$mobile_screen: 576px;
+
+$icon_medium: 15px;
+
+@mixin btn-unstyled() {
+  background-color: transparent;
+  border-style: none;
+  border-color: transparent;
+  border-image: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+@mixin btn-rounded() {
+  border: 1px solid;
+  cursor: pointer;
+  text-decoration: none;
+  min-width: 100px;
+  transition: all 0.3s;
+  border-radius: $border_radius;
+}
+
+:export {
+  mobile_size: $mobile_screen;
+}
