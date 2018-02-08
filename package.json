@@ -3,15 +3,6 @@
   "version": "0.0.1",
   "main": "src/index.js",
   "license": "MIT",
-  "nyc": {
-    "check-coverage": true,
-    "per-file": false,
-    "lines": 90,
-    "require": [
-      "babel-register",
-      "./test/hooks/css-modules-compiler.js"
-    ]
-  },
   "jest": {
     "moduleNameMapper": {
       "\\.(jpg|jpeg|png|gif|eot|otf|webp|svg|ttf|woff|woff2|mp4|webm|wav|mp3|m4a|aac|oga)$": "<rootDir>/__mocks__/fileMock.js",
@@ -26,7 +17,7 @@
     "start": "webpack-dev-server --port 8080 --progress --colors -d --env=dev",
     "lint-js": "eslint --config .eslintrc.json ./src",
     "lint-css": "yarn run stylelint src/**/*.scss src/**/**/*.scss --syntax scss",
-    "test": "jest",
+    "test": "jest --coverage",
     "functional-test": "mocha -c --timeout 90000 --require babel-register --require test/hooks/css-modules-compiler.js --require babel-polyfill -r ./test/.setup.js --recursive ./test/functional",
     "test:watch": "yarn test -- --watch"
   },
