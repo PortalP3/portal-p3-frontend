@@ -28,7 +28,7 @@ export default class CategoryContainer extends Component {
     return (
       <div className="category-container">
         {this.state.categories.map(category => (
-          <Category key={category.id} name={category.name} image={category.acf.image.url} />
+          <Category key={category.id} id={category.id} name={category.name} image={category.acf.image.url} />
         ))}
       </div>
     )
