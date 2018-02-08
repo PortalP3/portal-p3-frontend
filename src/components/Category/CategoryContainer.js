@@ -8,6 +8,7 @@ import WordpressClient from '../../clients/WordpressClient'
 import './categoryContainer.scss'
 
 export default class CategoryContainer extends Component {
+
   constructor(props) {
     super(props)
     this.state = {
@@ -17,14 +18,13 @@ export default class CategoryContainer extends Component {
     this.wordpressClient = this.props.wordpressClient
   }
 
-  componentDidMount() {
+  async componentDidMount() {
     this.wordpressClient.getCategories().then((categories) => {
       this.setState({categories: categories.data})
     })
   }
 
   render() {
-    console.log(this.state.categories)
     return (
       <div className="category-container">
         {this.state.categories.map(category => (

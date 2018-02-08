@@ -1,0 +1,37 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`render Home view 1`] = `
+<div
+  className="app"
+>
+  <header>
+    <div
+      className="logo-portal-info-container"
+    >
+      <div
+        className="logo-portal"
+      >
+        PORTAL P3
+        <p>
+          Esta plataforma tiene como objetivo el compartir conocimiento crítico que pueda alimentar nuestro compromiso por la justicia social y económica
+        </p>
+      </div>
+    </div>
+  </header>
+  <div
+    className="main"
+  >
+    <h1>
+      TEMÁTICAS
+    </h1>
+    <div
+      className="category-container"
+    />
+  </div>
+  <footer>
+    <p>
+      Portal P3 - Abacaxi - Copyrights 2018
+    </p>
+  </footer>
+</div>
+`;
