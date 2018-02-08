@@ -1,7 +1,7 @@
 import React from 'react'
 import {shallow} from 'enzyme';
 
-import Header from '../../../src/components/Header'
+import Header from '../../../src/components/Header/Header'
 
 test('render header tag', () => {
   const wrapper = shallow(<Header />);

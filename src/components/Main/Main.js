@@ -11,13 +11,11 @@ import './main.scss'
 
 const Main = () => (
   <BrowserRouter id=''>
-    <section className='main'>
-      <Switch>
-        <Route exact path="/" render={() => <Home />} />
-        <Route exact path="/category/:categoryId?" render={(props) => <ArticleContainer categoryId={props.match.params.categoryId} />} />
-        <Route render={() => <Redirect to="/" />} />
-      </Switch>
-    </section>
+    <Switch>
+      <Route exact path="/" render={() => <Home />} />
+      <Route exact path="/category/:categoryId?" render={(props) => <ArticleContainer categoryId={props.match.params.categoryId} />} />
+      <Route render={() => <Redirect to="/" />} />
+    </Switch>
   </BrowserRouter>
 )
 

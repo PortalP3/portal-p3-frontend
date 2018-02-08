@@ -1,7 +1,7 @@
 import React from 'react'
 import {shallow} from 'enzyme';
 
-import Footer from '../../../src/components/Footer'
+import Footer from '../../../src/components/Footer/Footer'
 
 test('render footer tag', () => {
   const wrapper = shallow(<Footer />);
