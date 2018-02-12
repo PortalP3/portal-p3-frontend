@@ -9,5 +9,22 @@ test('render BrowserRouter', () => {
   expect(wrapper.find('GABrowserRouter').props()['id']).toEqual('')
 })
 
-test('render BrowserRouter', () => {
-}
+test('render route for root', () => {
+  const wrapper = shallow(<Main />)
+
+  expect(wrapper.find('GABrowserRouter').find('Route').at(0).props().exact).toEqual(true)
+  expect(wrapper.find('GABrowserRouter').find('Route').at(0).props().path).toEqual('/')
+})
+
+test('render route for category', () => {
+  const wrapper = shallow(<Main />)
+
+  expect(wrapper.find('GABrowserRouter').find('Route').at(1).props().exact).toEqual(true)
+  expect(wrapper.find('GABrowserRouter').find('Route').at(1).props().path).toEqual('/category/:categoryId?')
+})
+
+test('render default route', () => {
+  const wrapper = shallow(<Main />)
+
+  expect(wrapper.find('GABrowserRouter').find('Route').at(2).props().render).toBeDefined()
+})

@@ -69,9 +69,11 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^16.0.0",
     "react-g-analytics": "^0.4.2",
+    "react-redux": "^5.0.6",
     "react-render-html": "^0.6.0",
     "react-router": "^4.1.2",
     "react-router-dom": "^4.1.2",
+    "redux": "^3.7.2",
     "selenium-webdriver": "^3.5.0",
     "uuid": "^3.1.0",
     "yarn": "^1.0.0"
