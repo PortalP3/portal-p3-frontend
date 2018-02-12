@@ -41,5 +41,5 @@ ArticleContainer.defaultProps = {
 
 ArticleContainer.propTypes = {
   wordpressClient: PropTypes.shape(),
-  categoryId: PropTypes.number.isRequired
+  categoryId: PropTypes.string.isRequired
 }

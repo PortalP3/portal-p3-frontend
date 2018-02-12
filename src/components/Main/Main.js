@@ -1,8 +1,7 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
-import { Route, Redirect, Switch } from 'react-router-dom'
-import { BrowserRouter } from 'react-g-analytics';
+import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 import Home from '../Home/Home'
 import ArticleContainer from '../Article/ArticleContainer'
@@ -10,7 +9,7 @@ import ArticleContainer from '../Article/ArticleContainer'
 import './main.scss'
 
 const Main = () => (
-  <BrowserRouter id=''>
+  <BrowserRouter>
     <Switch>
       <Route exact path="/" render={() => <Home />} />
       <Route exact path="/category/:categoryId?" render={(props) => <ArticleContainer categoryId={props.match.params.categoryId} />} />
