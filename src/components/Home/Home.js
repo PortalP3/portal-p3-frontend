@@ -1,15 +1,30 @@
-import React from 'react'
+import React, {Component} from 'react'
+import {connect} from 'react-redux'
+import PropTypes from 'prop-types'
 
 import CategoryContainer from '../Category/CategoryContainer'
 
 import './home.scss'
 
-const Home = () => (
-  <div className="home">
-    <h1>TEMÁTICAS</h1>
+class Home extends Component {
 
-    <CategoryContainer />
-  </div>
-)
+  componentWillMount() {
+    this.props.dispatch({type: 'HEADER_RESET_TITLE'})
+  }
 
-export default Home
+  render() {
+    return (
+      <div className="home">
+        <h1>TEMÁTICAS</h1>
+        <CategoryContainer />
+      </div>
+    )
+  }
+
+}
+
+Home.propTypes = {
+  dispatch: PropTypes.func.isRequired
+}
+
+export default connect()(Home)

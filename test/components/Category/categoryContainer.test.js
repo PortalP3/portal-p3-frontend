@@ -48,12 +48,11 @@ test('render Category subcomponents', () => {
     categories: categories.data
   })
 
+  expect(wrapper.find('Connect(Category)').at(0).key()).toEqual('1')
+  expect(wrapper.find('Connect(Category)').at(0).props()['name']).toEqual('category1')
+  expect(wrapper.find('Connect(Category)').at(0).props()['image']).toEqual('image1')
 
-  expect(wrapper.find('Category').at(0).key()).toEqual('1')
-  expect(wrapper.find('Category').at(0).props()['name']).toEqual('category1')
-  expect(wrapper.find('Category').at(0).props()['image']).toEqual('image1')
-
-  expect(wrapper.find('Category').at(1).key()).toEqual('2')
-  expect(wrapper.find('Category').at(1).props()['name']).toEqual('category2')
-  expect(wrapper.find('Category').at(1).props()['image']).toEqual('image2')
+  expect(wrapper.find('Connect(Category)').at(1).key()).toEqual('2')
+  expect(wrapper.find('Connect(Category)').at(1).props()['name']).toEqual('category2')
+  expect(wrapper.find('Connect(Category)').at(1).props()['image']).toEqual('image2')
 })

@@ -11,6 +11,8 @@ const HeaderReducer = (state = initialValues, action) => {
         title: action.payload,
         description: ''
       }
+    case 'HEADER_RESET_TITLE':
+      return initialValues
     default:
       return state
   }

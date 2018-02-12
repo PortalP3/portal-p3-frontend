@@ -6,28 +6,28 @@ import ArticleContainer from '../../../src/components/Article/ArticleContainer'
 const articles = {
   data: [
     {
-      id: 1,
+      id: '1',
       title: {
-        rendered: "title1"
+        rendered: 'title1'
       },
       excerpt: {
-        rendered: "excerpt1"
+        rendered: 'excerpt1'
       }
     },
     {
-      id: 2,
+      id: '2',
       title: {
-        rendered: "title2"
+        rendered: 'title2'
       },
       excerpt: {
-        rendered: "excerpt2"
+        rendered: 'excerpt2'
       }
     }
   ]
 }
 
 test('render outer div for articles', () => {
-  const wrapper = shallow(<ArticleContainer categoryId={1} />)
+  const wrapper = shallow(<ArticleContainer categoryId='1' />)
   expect(wrapper.find('.article-container')).toHaveLength(1)
 })
 
@@ -38,14 +38,14 @@ test('load articles from wordpress', async () => {
     }
   }
 
-  const wrapper = shallow(<ArticleContainer categoryId={1} wordpressClient={wordpressClient}/>)
+  const wrapper = shallow(<ArticleContainer categoryId='1' wordpressClient={wordpressClient}/>)
   await wrapper.instance().componentDidMount()
 
   expect(wrapper.state('articles')).toEqual(articles.data)
 })
 
 test('render Category subcomponents', () => {
-  const wrapper = shallow(<ArticleContainer categoryId={1} />)
+  const wrapper = shallow(<ArticleContainer categoryId='1' />)
   wrapper.setState({
     articles: articles.data
   })
