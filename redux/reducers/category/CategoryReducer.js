@@ -1,6 +1,6 @@
 const initialValues = {
   articles: [],
-  articleContent:''
+  articleContent: {}
 }
 
 const CategoryReducer = (state = initialValues, action) => {

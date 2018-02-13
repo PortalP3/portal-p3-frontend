@@ -39,7 +39,7 @@ ArticleContainer.defaultProps = {
 
 ArticleContainer.propTypes = {
   wordpressClient: PropTypes.shape(),
-  categoryId: PropTypes.string.isRequired,
+  categoryId: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired
 }

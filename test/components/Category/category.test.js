@@ -17,6 +17,10 @@ test('render outer div for category', () => {
   expect(wrapper.find('.category')).toHaveLength(1)
 })
 
+test('render Link for ArticleExcerpt', () => {
+  expect(wrapper.find('Link').props()['to']).toEqual('/category/1')
+})
+
 test('render image for category', () => {
   expect(wrapper.find('.category').find('img').props()['src']).toEqual('image')
   expect(wrapper.find('.category').find('img').props()['alt']).toEqual('category')
