@@ -10,6 +10,7 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.dispatch({type: 'HEADER_RESET_TITLE'})
+    this.props.dispatch({type: 'CATEGORY_RESET_ARTICLES'})
   }
 
   render() {

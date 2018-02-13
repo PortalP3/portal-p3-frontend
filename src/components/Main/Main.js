@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 
 import Home from '../Home/Home'
 import ArticleContainer from '../Article/ArticleContainer'
+import Article from '../Article/Article'
 
 import './main.scss'
 
@@ -13,6 +14,7 @@ const Main = () => (
     <Switch>
       <Route exact path="/" render={() => <Home />} />
       <Route exact path="/category/:categoryId?" render={(props) => <ArticleContainer categoryId={props.match.params.categoryId} />} />
+      <Route exact path="/article/:articleId?" render={(props) => <Article articleId={props.match.params.articleId} />} />
       <Route render={() => <Redirect to="/" />} />
     </Switch>
   </BrowserRouter>
