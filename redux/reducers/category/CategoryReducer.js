@@ -1,6 +1,7 @@
 const initialValues = {
   articles: [],
-  articleContent: {}
+  articleContent: {},
+  articleAuthor: ''
 }
 
 const CategoryReducer = (state = initialValues, action) => {
@@ -14,6 +15,11 @@ const CategoryReducer = (state = initialValues, action) => {
       return {
         ...state,
         articleContent: findArticleById(action.payload, state.articles)
+      }
+    case 'CATEGORY_SET_ARTICLE_AUTHOR':
+      return {
+        ...state,
+        articleAuthor: action.payload
       }
     case 'CATEGORY_RESET_ARTICLES':
       return initialValues

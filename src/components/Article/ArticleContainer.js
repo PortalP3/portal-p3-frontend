@@ -26,7 +26,13 @@ class ArticleContainer extends Component {
     return (
       <div className="article-container">
         {this.props.articles.map(article => (
-          <ArticleExcerpt key={article.id} id={article.id} title={article.title.rendered} excerpt={article.excerpt.rendered} />
+          <ArticleExcerpt
+            key={article.id}
+            id={article.id}
+            title={article.title.rendered}
+            excerpt={article.excerpt.rendered}
+            authorId={article.author}
+          />
         ))}
       </div>
     )
