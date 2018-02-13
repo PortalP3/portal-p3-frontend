@@ -12,7 +12,7 @@ class Article extends Component {
 
   componentDidMount() {
     this.props.wordpressClient.getAuthorInfo(this.props.content.author).then(author => {
-      this.props.dispatch({type: 'CATEGORY_SET_ARTICLE_AUTHOR', payload: author.data[0].name})
+      this.props.dispatch({type: 'ARTICLE_SET_AUTHOR', payload: author.data[0].name})
     })
   }
 
@@ -44,6 +44,6 @@ Article.propTypes = {
 }
 
 export default connect(store => ({
-  authorName: store.category.articleAuthor,
-  content: store.category.articleContent
+  authorName: store.article.authorName,
+  content: store.article.content
 }))(Article)
