@@ -2,11 +2,16 @@ import React from 'react'
 import {mount} from 'enzyme'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
+import {MemoryRouter} from 'react-router-dom'
 
 import Category from '../../../src/components/Category/Category'
 import reducers from '../../../redux/reducers/Reducers'
 
-const wrapper = mount(<Provider store={createStore(reducers)}><Category id='1' name='category' image='image'/></Provider>)
+const wrapper = mount(<Provider store={createStore(reducers)}>
+                        <MemoryRouter>
+                          <Category id={1} name='category' image='image'/>
+                        </MemoryRouter>
+                      </Provider>)
 
 test('render outer div for category', () => {
   expect(wrapper.find('.category')).toHaveLength(1)

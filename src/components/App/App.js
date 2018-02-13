@@ -1,6 +1,4 @@
 import React from 'react'
-import {withRouter} from 'react-router-dom'
-import {connect} from 'react-redux'
 
 import Header from '../Header/Header'
 import Main from '../Main/Main'
@@ -18,4 +16,4 @@ const App = () => {
   )
 }
 
-export default withRouter(connect()(App))
+export default App
