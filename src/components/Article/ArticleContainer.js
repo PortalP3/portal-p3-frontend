@@ -3,9 +3,11 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
 import ArticleExcerpt from './ArticleExcerpt'
+import CategoryContainer from '../Category/CategoryContainer'
 
 import WordpressClient from '../../clients/WordpressClient'
 
+import '../Category/categoryContainer.scss'
 import './articleContainer.scss'
 
 class ArticleContainer extends Component {
@@ -17,9 +19,24 @@ class ArticleContainer extends Component {
   }
 
   async componentDidMount() {
-    this.wordpressClient.getArticlesByCategory(this.props.categoryId).then((articles) => {
+    await this.loadCategory(this.props.categoryId)
+  }
+
+  async componentWillReceiveProps(nextProps) {
+    if(this.props.categoryId !== nextProps.categoryId) {
+      await this.loadCategory(nextProps.categoryId)
+    }
+  }
+
+  async loadCategory(categoryId) {
+    this.props.dispatch({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
+    await this.wordpressClient.getArticlesByCategory(categoryId).then((articles) => {
       this.props.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
     })
+  }
+
+  findCategoryNameById(categoryId) {
+    return this.props.categories.filter(category => category.id === categoryId)[0].name
   }
 
   render() {
@@ -34,6 +51,8 @@ class ArticleContainer extends Component {
             authorId={article.author}
           />
         ))}
+
+        <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
       </div>
     )
   }
@@ -47,9 +66,11 @@ ArticleContainer.propTypes = {
   wordpressClient: PropTypes.shape(),
   categoryId: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
-  articles: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
 }
 
 export default connect(store => ({
-  articles: store.category.articles
+  articles: store.category.articles,
+  categories: store.category.categories
 }))(ArticleContainer)

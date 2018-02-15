@@ -16,8 +16,7 @@ class Home extends Component {
   render() {
     return (
       <div className="home">
-        <h1>TEMÁTICAS</h1>
-        <CategoryContainer />
+        <CategoryContainer title="TEMÁTICAS" />
       </div>
     )
   }

@@ -1,4 +1,15 @@
 .category-container {
   display: flex;
   justify-content: center;
+  flex-direction: column;
+
+  .container-title {
+    display: flex;
+    justify-content: center;
+  }
+
+  .container-content {
+    display: flex;
+    justify-content: center;
+  }
 }

@@ -1,14 +1,13 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
 
 import './category.scss'
 
 const Category = (props) => (
   <div className="category">
     <img src={props.image} alt={props.name} />
-    <Link to={`/category/${props.id}`} onClick={() => props.dispatch({type: 'HEADER_SET_TITLE', payload: props.name})}>
+    <Link to={`/category/${props.id}`}>
       <h2>{props.name}</h2>
     </Link>
   </div>
@@ -18,7 +17,6 @@ Category.propTypes = {
   id: PropTypes.number.isRequired,
   name: PropTypes.string.isRequired,
   image: PropTypes.string.isRequired,
-  dispatch: PropTypes.func.isRequired
 }
 
-export default connect()(Category)
+export default Category
