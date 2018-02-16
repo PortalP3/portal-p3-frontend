@@ -16,7 +16,7 @@ class CategoryContainer extends Component {
     this.wordpressClient = this.props.wordpressClient
   }
 
-  async componentDidMount() {
+  componentDidMount() {
     this.wordpressClient.getCategories().then((categories) => {
       this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
     })

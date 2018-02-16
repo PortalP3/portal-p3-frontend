@@ -7,10 +7,32 @@ import {MemoryRouter} from 'react-router-dom'
 import ArticleContainer from '../../../src/components/Article/ArticleContainer'
 import reducers from '../../../redux/reducers/Reducers'
 
+const categories = {
+  data: [{
+    id: 1,
+    name: 'category1',
+    acf: {
+      image: {
+        url: 'image1'
+      }
+    }
+  },
+  {
+    id: 2,
+    name: 'category2',
+    acf: {
+      image: {
+        url: 'image2'
+      }
+    }
+  }]
+}
+
 const articles = {
   data: [
     {
       id: 1,
+      author: 1,
       title: {
         rendered: 'title1'
       },
@@ -20,6 +42,7 @@ const articles = {
     },
     {
       id: 2,
+      author: 2,
       title: {
         rendered: 'title2'
       },
@@ -40,6 +63,8 @@ const store = createStore(reducers)
 let wrapper
 
 beforeEach(() => {
+  store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+
   wrapper = mount(<Provider store={store}>
                     <MemoryRouter>
                       <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
@@ -52,15 +77,16 @@ test('render outer div for articles', () => {
 })
 
 test('render Category subcomponents', () => {
-  wrapper.setState({
-    articles: articles.data
-  })
+  assertCategoryContainer(0, '1', 1, 'title1', 'excerpt1', 1)
+  assertCategoryContainer(1, '2', 2, 'title2', 'excerpt2', 2)
 
-  expect(wrapper.find('ArticleExcerpt').at(0).props()['id']).toEqual(1)
-  expect(wrapper.find('ArticleExcerpt').at(0).props()['title']).toEqual('title1')
-  expect(wrapper.find('ArticleExcerpt').at(0).props()['excerpt']).toEqual('excerpt1')
-
-  expect(wrapper.find('ArticleExcerpt').at(1).props()['id']).toEqual(2)
-  expect(wrapper.find('ArticleExcerpt').at(1).props()['title']).toEqual('title2')
-  expect(wrapper.find('ArticleExcerpt').at(1).props()['excerpt']).toEqual('excerpt2')
+  expect(wrapper.find('CategoryContainer').at(0).props()['title']).toEqual('OTRAS TEMÁTICAS')
 })
+
+const assertCategoryContainer = (index, key, id, title, excerpt, authorId) => {
+  expect(wrapper.find('Connect(ArticleExcerpt)').at(index).key()).toEqual(key)
+  expect(wrapper.find('ArticleExcerpt').at(index).props()['id']).toEqual(id)
+  expect(wrapper.find('ArticleExcerpt').at(index).props()['title']).toEqual(title)
+  expect(wrapper.find('ArticleExcerpt').at(index).props()['excerpt']).toEqual(excerpt)
+  expect(wrapper.find('ArticleExcerpt').at(index).props()['authorId']).toEqual(authorId)
+}
