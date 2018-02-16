@@ -10,7 +10,7 @@ import reducers from '../../../redux/reducers/Reducers'
 const store = createStore(reducers)
 const wrapper = mount(<Provider store={store}>
                         <MemoryRouter>
-                          <ArticleExcerpt id={1} title='title' excerpt='<p>excerpt</p>' />
+                          <ArticleExcerpt id={1} categoryId={1} title='title' excerpt='<p>excerpt</p>' />
                         </MemoryRouter>
                       </Provider>)
 
@@ -19,7 +19,7 @@ test('render outer div for article excerpt', () => {
 })
 
 test('render Link for article content', () => {
-  expect(wrapper.find('Link').props()['to']).toEqual('/article/1')
+  expect(wrapper.find('Link').props()['to']).toEqual('/category/1/article/1')
 })
 
 test('render h2 with title for article excerpt', () => {

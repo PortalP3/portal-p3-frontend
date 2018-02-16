@@ -14,7 +14,7 @@ const Main = () => (
     <Switch>
       <Route exact path="/" render={() => <Home />} />
       <Route exact path="/category/:categoryId?" render={(props) => <ArticleContainer categoryId={parseInt(props.match.params.categoryId)} />} />
-      <Route exact path="/article/:articleId?" render={() => <Article />} />
+      <Route exact path="/category/:categoryId?/article/:articleId?" render={(props) => <Article categoryId={parseInt(props.match.params.categoryId)} />} />
       <Route render={() => <Redirect to="/" />} />
     </Switch>
   </BrowserRouter>

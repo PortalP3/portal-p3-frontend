@@ -3,10 +3,12 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import renderHTML from 'react-render-html';
 
+import CategoryContainer from '../Category/CategoryContainer'
 import WordpressClient from '../../clients/WordpressClient'
 
 import './articleContainer.scss'
 import './article.scss'
+import '../Category/categoryContainer.scss'
 
 class Article extends Component {
 
@@ -27,6 +29,8 @@ class Article extends Component {
         </div>
         {renderHTML(this.props.content.content.rendered)}
       </div>
+
+      <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
     </div>)
   }
 
@@ -40,7 +44,8 @@ Article.propTypes = {
   content: PropTypes.shape().isRequired,
   wordpressClient: PropTypes.shape().isRequired,
   dispatch: PropTypes.func.isRequired,
-  authorName: PropTypes.string.isRequired
+  authorName: PropTypes.string.isRequired,
+  categoryId: PropTypes.number.isRequired,
 }
 
 export default connect(store => ({

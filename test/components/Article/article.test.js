@@ -51,7 +51,7 @@ beforeEach(() => {
   store.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles})
   store.dispatch({type: 'ARTICLE_SET_CONTENT', payload: article1})
 
-  wrapper = mount(<Provider store={store}><Article wordpressClient={wordpressClient} /></Provider>)
+  wrapper = mount(<Provider store={store}><Article categoryId={1} wordpressClient={wordpressClient} /></Provider>)
 })
 
 test('render outer div for article', () => {
@@ -72,4 +72,8 @@ test('render article meta', () => {
 test('render article html content', () => {
   let articleContent = wrapper.find('.article-container').find('.article')
   expect(articleContent.text()).toMatch(/excerpt1/)
+})
+
+test('render category container for other categories', () => {
+  expect(wrapper.find('CategoryContainer').at(0).props()['title']).toEqual('OTRAS TEMÁTICAS')
 })

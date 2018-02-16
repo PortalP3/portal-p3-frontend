@@ -49,6 +49,7 @@ class ArticleContainer extends Component {
             title={article.title.rendered}
             excerpt={article.excerpt.rendered}
             authorId={article.author}
+            categoryId={this.props.categoryId}
           />
         ))}
 
