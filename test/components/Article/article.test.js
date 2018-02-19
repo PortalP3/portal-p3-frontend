@@ -2,6 +2,7 @@ import React from 'react'
 import {mount} from 'enzyme'
 import {Provider} from 'react-redux'
 import {createStore} from 'redux'
+import {MemoryRouter} from 'react-router-dom'
 
 import Article from '../../../src/components/Article/Article'
 import reducers from '../../../redux/reducers/Reducers'
@@ -51,7 +52,13 @@ beforeEach(() => {
   store.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles})
   store.dispatch({type: 'ARTICLE_SET_CONTENT', payload: article1})
 
-  wrapper = mount(<Provider store={store}><Article categoryId={1} wordpressClient={wordpressClient} /></Provider>)
+  wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Article categoryId={1} wordpressClient={wordpressClient} />
+      </MemoryRouter>
+    </Provider>
+  )
 })
 
 test('render outer div for article', () => {
@@ -72,6 +79,10 @@ test('render article meta', () => {
 test('render article html content', () => {
   let articleContent = wrapper.find('.article-container').find('.article')
   expect(articleContent.text()).toMatch(/excerpt1/)
+})
+
+test('render article navigation for links', () => {
+  expect(wrapper.find('ArticleNavigation').props()['categoryId']).toEqual(1)
 })
 
 test('render category container for other categories', () => {

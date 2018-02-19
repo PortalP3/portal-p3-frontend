@@ -8,11 +8,13 @@ import ArticleExcerpt from '../../../src/components/Article/ArticleExcerpt'
 import reducers from '../../../redux/reducers/Reducers'
 
 const store = createStore(reducers)
-const wrapper = mount(<Provider store={store}>
-                        <MemoryRouter>
-                          <ArticleExcerpt id={1} categoryId={1} title='title' excerpt='<p>excerpt</p>' />
-                        </MemoryRouter>
-                      </Provider>)
+const wrapper = mount(
+  <Provider store={store}>
+    <MemoryRouter>
+      <ArticleExcerpt id={1} categoryId={1} title='title' excerpt='<p>excerpt</p>' />
+    </MemoryRouter>
+  </Provider>
+)
 
 test('render outer div for article excerpt', () => {
   expect(wrapper.find('.article-excerpt')).toHaveLength(1)

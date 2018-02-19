@@ -65,11 +65,13 @@ let wrapper
 beforeEach(() => {
   store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
 
-  wrapper = mount(<Provider store={store}>
-                    <MemoryRouter>
-                      <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
-                    </MemoryRouter>
-                  </Provider>)
+  wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
+      </MemoryRouter>
+    </Provider>
+  )
 })
 
 test('render outer div for articles', () => {
