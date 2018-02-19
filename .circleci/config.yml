@@ -1,15 +1,11 @@
-# Javascript Node CircleCI 2.0 configuration file
-#
-# Check https://circleci.com/docs/2.0/language-javascript/ for more details
-#
 version: 2
 machine:
   timezone:
     America/Santiago
 jobs:
-  build:
+  test:
     docker:
-      - image: circleci/node:8.9
+      - image: mhart/alpine-node:8.9
 
     working_directory: ~/portal-p3-frontend
 
@@ -23,12 +19,15 @@ jobs:
           # fallback to using the latest cache if no exact match is found
           - v1-dependencies-
 
-      - run: yarn
+      - run: 
+          name: Install dependencies
+          command: yarn
 
       - save_cache:
           paths:
             - node_modules
           key: v1-dependencies-{{ checksum "package.json" }}
 
-      # run tests!
-      - run: yarn test
+      - run:
+          name: Unit tests
+          command: make unit-test
