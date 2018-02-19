@@ -10,6 +10,10 @@ jobs:
     working_directory: ~/portal-p3-frontend
 
     steps:
+      - run:
+          name: Install system tools
+          run: apk add git openssh bash
+
       - checkout
 
       # Download and cache dependencies
