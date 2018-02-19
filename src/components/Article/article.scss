@@ -19,3 +19,12 @@
     justify-content: space-evenly;
   }
 }
+
+.article-navigation {
+  background: $article_background;
+  padding: $space_extra_thin $space_extra_medium;
+
+  a {
+    font-size: 20px;
+  }
+}

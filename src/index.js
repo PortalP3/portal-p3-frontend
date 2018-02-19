@@ -13,4 +13,5 @@ ReactDom.render(
   <Provider store={createStore(reducers, applyMiddleware(logger))}>
     <App />
   </Provider>
-  , root)
+  ,
+root)

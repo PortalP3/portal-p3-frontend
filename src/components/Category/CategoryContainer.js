@@ -12,12 +12,10 @@ class CategoryContainer extends Component {
 
   constructor(props) {
     super(props)
-
-    this.wordpressClient = this.props.wordpressClient
   }
 
   componentDidMount() {
-    this.wordpressClient.getCategories().then((categories) => {
+    this.props.wordpressClient.getCategories().then((categories) => {
       this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
     })
   }
