@@ -14,8 +14,6 @@ class ArticleContainer extends Component {
 
   constructor(props) {
     super(props)
-
-    this.wordpressClient = this.props.wordpressClient
   }
 
   async componentDidMount() {
@@ -30,7 +28,7 @@ class ArticleContainer extends Component {
 
   async loadCategory(categoryId) {
     this.props.dispatch({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
-    await this.wordpressClient.getArticlesByCategory(categoryId).then((articles) => {
+    await this.props.wordpressClient.getArticlesByCategory(categoryId).then((articles) => {
       this.props.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
     })
   }

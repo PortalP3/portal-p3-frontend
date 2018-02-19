@@ -1,9 +1,11 @@
 import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
-import renderHTML from 'react-render-html';
+import renderHTML from 'react-render-html'
 
 import CategoryContainer from '../Category/CategoryContainer'
+import ArticleNavigation from './ArticleNavigation'
+
 import WordpressClient from '../../clients/WordpressClient'
 
 import './articleContainer.scss'
@@ -36,6 +38,8 @@ class Article extends Component {
         {renderHTML(this.props.content.content.rendered)}
       </div>
 
+      <ArticleNavigation categoryId={this.props.categoryId} />
+
       <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
     </div>)
   }
@@ -56,5 +60,5 @@ Article.propTypes = {
 
 export default connect(store => ({
   authorName: store.article.authorName,
-  content: store.article.content
+  content: store.article.content,
 }))(Article)

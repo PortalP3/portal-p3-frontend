@@ -19,12 +19,11 @@ $font_bold: 700;
 
 $line_height_narrow: 15px;
 
-/* alto minimo para el contenedor central de la pagina. 308px = alto del header + alto del footer */
-$min_height: calc(100vh - 308px);
-$min_height_without_header: calc(100vh - 158px);
-
 $font_family: 'Roboto';
 $font_color: #4d4d4d;
+
+$body_background: #d2d3c6;
+$article_background: #f0efe9;
 
 $dark_gray: #979797;
 $gray: #e9e9e9;
