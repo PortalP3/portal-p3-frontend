@@ -12,7 +12,7 @@ jobs:
     steps:
       - run:
           name: Install system tools
-          run: apk add git openssh bash
+          command: apk add git openssh bash
 
       - checkout
 
