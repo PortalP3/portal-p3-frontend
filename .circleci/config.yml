@@ -9,7 +9,7 @@ machine:
 jobs:
   build:
     docker:
-      - image: circleci/node:7.10
+      - image: circleci/node:8.9
 
     working_directory: ~/portal-p3-frontend
 
