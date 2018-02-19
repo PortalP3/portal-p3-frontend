@@ -3,7 +3,7 @@ machine:
   timezone:
     America/Santiago
 jobs:
-  test:
+  build:
     docker:
       - image: mhart/alpine-node:8.9
 
