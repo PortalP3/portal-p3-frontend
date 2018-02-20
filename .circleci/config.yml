@@ -5,7 +5,7 @@ machine:
 jobs:
   build:
     docker:
-      - image: mhart/alpine-node:8.9
+      - image: alpine:3.7
 
     working_directory: ~/portal-p3-frontend
 
@@ -16,7 +16,7 @@ jobs:
 
       - run:
           name: Install system tools
-          command: apk update && apk add --no-cache git openssh make
+          command: apk update && apk add --no-cache git openssh make nodejs yarn
 
       - checkout
 
