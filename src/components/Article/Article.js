@@ -32,7 +32,7 @@ class Article extends Component {
         {renderHTML(this.props.content.content.rendered)}
       </div>
 
-      <ArticleNavigation categoryId={this.props.categoryId} />
+      <ArticleNavigation categoryId={this.props.categoryId} articleId={this.props.articleId} />
 
       <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
     </div>)
@@ -50,6 +50,7 @@ Article.propTypes = {
   dispatch: PropTypes.func.isRequired,
   authorName: PropTypes.string.isRequired,
   categoryId: PropTypes.number.isRequired,
+  articleId: PropTypes.number.isRequired
 }
 
 export default connect(store => ({

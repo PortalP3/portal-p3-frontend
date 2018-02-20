@@ -13,8 +13,16 @@ const Main = () => (
   <BrowserRouter>
     <Switch>
       <Route exact path="/" render={() => <Home />} />
-      <Route exact path="/category/:categoryId?" render={(props) => <ArticleContainer categoryId={parseInt(props.match.params.categoryId)} />} />
-      <Route exact path="/category/:categoryId?/article/:articleId?" render={(props) => <Article categoryId={parseInt(props.match.params.categoryId)} />} />
+      <Route
+        exact
+        path="/category/:categoryId?"
+        render={(props) => <ArticleContainer categoryId={parseInt(props.match.params.categoryId)} />}
+      />
+      <Route
+        exact
+        path="/category/:categoryId?/article/:articleId?"
+        render={(props) => <Article categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />} 
+      />
       <Route render={() => <Redirect to="/" />} />
     </Switch>
   </BrowserRouter>
