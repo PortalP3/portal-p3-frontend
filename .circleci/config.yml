@@ -16,7 +16,7 @@ jobs:
 
       - run:
           name: Install system tools
-          command: apk update && apk add git openssh make
+          command: apk update && apk add --no-cache git openssh make
 
       - checkout
 
