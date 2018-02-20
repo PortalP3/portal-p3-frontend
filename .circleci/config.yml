@@ -5,18 +5,14 @@ machine:
 jobs:
   build:
     docker:
-      - image: alpine:3.7
+      - image: base/archlinux:latest
 
     working_directory: ~/portal-p3-frontend
 
     steps:
       - run:
-          name: Adding Alpine mirrors
-          command: echo http://mirror.leaseweb.com/alpine/v3.6/main >> /etc/apk/repositories && echo http://mirror.leaseweb.com/alpine/v3.6/community >> /etc/apk/repositories
-
-      - run:
           name: Install system tools
-          command: apk update && apk add --no-cache git openssh make nodejs yarn
+          command: pacman -Sy && pacman -S git openssh make nodejs-lts-carbon yarn
 
       - checkout
 
