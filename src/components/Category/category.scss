@@ -1,7 +1,7 @@
 @import "src/utilities/_variables";
 
 .category {
-  width: 400px;
+  width: 300px;
   height: 300px;
   margin: 10px;
   position: relative;
@@ -21,6 +21,10 @@
     margin: 0;
     padding: 0 30px;
     text-decoration: none;
+  }
+
+  a:hover {
+    color: $orange;
   }
 
   h2 {

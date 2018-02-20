@@ -1,11 +1,10 @@
 @import "src/utilities/_variables";
-@import url('https://fonts.googleapis.com/css?family=Roboto:100');
+@import url('https://fonts.googleapis.com/css?family=Roboto:100,700');
 
 body {
   margin: 0;
   background: #d2d3c6;
   font-family: $font_family;
-  font-weight: 100;
 }
 
 div.app {
