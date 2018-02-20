@@ -55,7 +55,7 @@ beforeEach(() => {
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <Article categoryId={1} wordpressClient={wordpressClient} />
+        <Article categoryId={1} articleId={10} wordpressClient={wordpressClient} />
       </MemoryRouter>
     </Provider>
   )
