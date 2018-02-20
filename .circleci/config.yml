@@ -12,7 +12,7 @@ jobs:
     steps:
       - run:
           name: Adding Alpine mirrors
-          command: echo http://mirror.leaseweb.com/alpine/v3.6/main >> /etc/apk/repositories && http://mirror.leaseweb.com/alpine/v3.6/community >> /etc/apk/repositories
+          command: echo http://mirror.leaseweb.com/alpine/v3.6/main >> /etc/apk/repositories && echo http://mirror.leaseweb.com/alpine/v3.6/community >> /etc/apk/repositories
 
       - run:
           name: Install system tools
