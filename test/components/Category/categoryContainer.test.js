@@ -38,6 +38,8 @@ const categories = {
 }
 
 const store = createStore(reducers)
+store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+
 let wrapper
 
 const wordpressClient = {
@@ -47,11 +49,13 @@ const wordpressClient = {
 }
 
 beforeEach(() => {
-  wrapper = mount(<Provider store={store}>
-                    <MemoryRouter>
-                      <CategoryContainer title='testTitle' selectedCategoryId={1} wordpressClient={wordpressClient}/>
-                    </MemoryRouter>
-                  </Provider>)
+  wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <CategoryContainer title='testTitle' selectedCategoryId={1} wordpressClient={wordpressClient}/>
+      </MemoryRouter>
+    </Provider>
+  )
 })
 
 test('render outer div for categories', () => {
@@ -68,11 +72,13 @@ test('render Category subcomponents with selected category', () => {
 })
 
 test('render Category subcomponents without selected category', () => {
-  wrapper = mount(<Provider store={store}>
-                    <MemoryRouter>
-                      <CategoryContainer title='testTitle' wordpressClient={wordpressClient}/>
-                    </MemoryRouter>
-                  </Provider>)
+  wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <CategoryContainer title='testTitle' wordpressClient={wordpressClient}/>
+      </MemoryRouter>
+    </Provider>
+  )
 
   assertCategory(0, '1', 'category1', 'image1')
   assertCategory(1, '2', 'category2', 'image2')
