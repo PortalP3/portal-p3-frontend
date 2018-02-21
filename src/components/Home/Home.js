@@ -18,12 +18,13 @@ class Home extends Component {
 
   componentWillMount() {
     this.props.dispatch({type: 'HEADER_RESET_TITLE'})
-    this.props.dispatch({type: 'CATEGORY_RESET_ARTICLES'})
   }
 
   async componentDidMount() {
-    let categories = await this.props.wordpressClient.getCategories()
-    this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+    if(this.props.categories.length === 0) {
+      let categories = await this.props.wordpressClient.getCategories()
+      this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+    }
   }
 
   getContent() {
