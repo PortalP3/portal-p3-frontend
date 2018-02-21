@@ -7,10 +7,6 @@ import './articleNavigation.scss'
 
 const ArticleNavigation = (props) => (
   <div className="article-navigation">
-    <div className="back-to-category">
-      <Link to={`/category/${props.categoryId}`}>&laquo; Volver a {capitalizeString(props.headerTitle)}</Link>
-    </div>
-
     <div className="previous-next-article">
       {getPreviousArticle(props.categoryId, props.articleId, props.articles, props.dispatch)}
       {getNextArticle(props.categoryId, props.articleId, props.articles, props.dispatch)}
@@ -22,8 +18,7 @@ ArticleNavigation.propTypes = {
   categoryId: PropTypes.number.isRequired,
   articleId: PropTypes.number.isRequired,
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  dispatch: PropTypes.func.isRequired,
-  headerTitle: PropTypes.string.isRequired
+  dispatch: PropTypes.func.isRequired
 }
 
 const getPreviousArticle = (categoryId, articleId, articles, dispatch) => {
@@ -62,11 +57,6 @@ const findArticleIndex = (articleId, articles) => {
   }
 }
 
-const capitalizeString = (str) => {
-  return str ? str[0].toUpperCase() + str.substr(1).toLowerCase() : ''
-}
-
 export default connect(store => ({
-  headerTitle: store.header.title,
   articles: store.category.articles
 }))(ArticleNavigation)

@@ -47,7 +47,6 @@ const articles = [article1, article2, article3]
 
 const store = createStore(reducers)
 
-store.dispatch({type: 'HEADER_SET_TITLE', payload: 'CATEGORY 1'})
 store.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles})
 
 const wrapper = mount(
@@ -60,12 +59,6 @@ const wrapper = mount(
 
 test('render outer div for article navigation', () => {
   expect(wrapper.find('.article-navigation')).toHaveLength(1)
-})
-
-test('render link for category of article', () => {
-  let link = wrapper.find('.article-navigation').find('.back-to-category').find('Link')
-  expect(link.props()['to']).toEqual('/category/1')
-  expect(link.text()).toEqual('« Volver a Category 1')
 })
 
 test('render link for previous and next article', () => {

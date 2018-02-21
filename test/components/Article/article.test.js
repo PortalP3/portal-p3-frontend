@@ -49,6 +49,7 @@ const store = createStore(reducers)
 let wrapper
 
 beforeEach(() => {
+  store.dispatch({type: 'HEADER_SET_TITLE', payload: 'CATEGORY 1'})
   store.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles})
   store.dispatch({type: 'ARTICLE_SET_CONTENT', payload: article1})
 
@@ -87,4 +88,10 @@ test('render article navigation for links', () => {
 
 test('render category container for other categories', () => {
   expect(wrapper.find('CategoryContainer').at(0).props()['title']).toEqual('OTRAS TEMÁTICAS')
+})
+
+test('render link for category of article', () => {
+  let link = wrapper.find('.article-container').find('.article').find('.back-to-category').find('Link')
+  expect(link.props()['to']).toEqual('/category/1')
+  expect(link.text()).toEqual('« Volver a Category 1')
 })
