@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 
 import ArticleExcerpt from './ArticleExcerpt'
 import CategoryContainer from '../Category/CategoryContainer'
+import Loading from '../Loading/Loading'
 
 import WordpressClient from '../../clients/WordpressClient'
 
@@ -22,6 +23,7 @@ class ArticleContainer extends Component {
 
   async componentWillReceiveProps(nextProps) {
     if(this.props.categoryId !== nextProps.categoryId) {
+      this.props.dispatch({type: 'CATEGORY_RESET_ARTICLES'})
       await this.loadCategory(nextProps.categoryId)
     }
   }
@@ -37,7 +39,9 @@ class ArticleContainer extends Component {
   }
 
   render() {
-    return (
+    if(this.props.articles.length === 0) {
+      return (<Loading />)
+    } else return (
       <div className="article-container">
         {this.props.articles.map(article => (
           <ArticleExcerpt
