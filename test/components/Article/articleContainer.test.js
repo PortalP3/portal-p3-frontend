@@ -60,11 +60,11 @@ const wordpressClient = {
 }
 
 const store = createStore(reducers)
+store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+
 let wrapper
 
 beforeEach(() => {
-  store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
-
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
@@ -74,8 +74,22 @@ beforeEach(() => {
   )
 })
 
+test('render Loader when articles are not loaded', () => {
+  let store = createStore(reducers)
+  store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+  
+  let wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
+      </MemoryRouter>
+    </Provider>
+  )
+
+  expect(wrapper.find('Loading')).toHaveLength(1)
+})
+
 test('render outer div for articles', () => {
-  console.log(wrapper.debug())
   expect(wrapper.find('.article-container')).toHaveLength(1)
 })
 
@@ -83,7 +97,7 @@ test('render Category subcomponents', () => {
   assertCategoryContainer(0, '1', 1, 'title1', 'excerpt1', 1)
   assertCategoryContainer(1, '2', 2, 'title2', 'excerpt2', 2)
 
-  expect(wrapper.find('CategoryContainer').at(0).props()['title']).toEqual('OTRAS TEMÁTICAS')
+  expect(wrapper.find('CategoryContainer').props()['title']).toEqual('OTRAS TEMÁTICAS')
 })
 
 const assertCategoryContainer = (index, key, id, title, excerpt, authorId) => {
