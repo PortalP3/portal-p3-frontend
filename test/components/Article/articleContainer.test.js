@@ -75,6 +75,7 @@ beforeEach(() => {
 })
 
 test('render outer div for articles', () => {
+  console.log(wrapper.debug())
   expect(wrapper.find('.article-container')).toHaveLength(1)
 })
 
