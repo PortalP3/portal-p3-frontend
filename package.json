@@ -20,7 +20,7 @@
     "test": "jest --coverage",
     "functional-test": "mocha -c --timeout 90000 --require babel-register --require test/hooks/css-modules-compiler.js --require babel-polyfill -r ./test/.setup.js --recursive ./test/functional",
     "test:watch": "yarn test -- --watch",
-    "postinstall": "yarn build:prod"
+    "postinstall": "postinstall-build dist --script build:prod"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -65,6 +65,7 @@
     "axios": "^0.16.2",
     "babel-polyfill": "^6.26.0",
     "history": "^4.6.3",
+    "postinstall-build": "^5.0.1",
     "prop-types": "^15.5.9",
     "react": "^16.0.0",
     "react-bootstrap": "^0.31.0",
