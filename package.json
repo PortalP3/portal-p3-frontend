@@ -19,7 +19,8 @@
     "lint-css": "yarn run stylelint src/**/*.scss src/**/**/*.scss --syntax scss",
     "test": "jest --coverage",
     "functional-test": "mocha -c --timeout 90000 --require babel-register --require test/hooks/css-modules-compiler.js --require babel-polyfill -r ./test/.setup.js --recursive ./test/functional",
-    "test:watch": "yarn test -- --watch"
+    "test:watch": "yarn test -- --watch",
+    "postinstall": "yarn build:prod"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
@@ -77,6 +78,8 @@
     "redux-logger": "^3.0.6",
     "selenium-webdriver": "^3.5.0",
     "uuid": "^3.1.0",
+    "webpack": "^3.7.1",
+    "webpack-cli": "^2.0.9",
     "yarn": "^1.0.0"
   }
 }
