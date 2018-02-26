@@ -2,11 +2,12 @@
   "root": "dist/",
   "https_only": true,
   "routes": {
+    "/assets/*": "/assets/",
     "/**": "index.html"
   },
   "proxies": {
     "/api/": {
-      "origin": "http://abacaxi-p3-api.herokuapp.com/index.php/wp-json/wp/v2"
+      "origin": "https://abacaxi-p3-api.herokuapp.com/index.php/wp-json/wp/v2"
     }
   },
   "headers": {
