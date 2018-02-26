@@ -1,6 +1,6 @@
 import axios from 'axios'
 
-const urlBackend = 'http://abacaxi-p3-api.herokuapp.com/index.php/wp-json/wp/v2'
+const urlBackend = 'https://abacaxi-p3-api.herokuapp.com/index.php/wp-json/wp/v2'
 
 export default class WordpressClient {
 
