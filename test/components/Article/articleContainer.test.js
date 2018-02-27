@@ -77,7 +77,7 @@ beforeEach(() => {
 test('render Loader when articles are not loaded', () => {
   let store = createStore(reducers)
   store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
-  
+
   let wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
@@ -90,10 +90,14 @@ test('render Loader when articles are not loaded', () => {
 })
 
 test('render outer div for articles', () => {
+  wrapper.update()
+  
   expect(wrapper.find('.article-container')).toHaveLength(1)
 })
 
 test('render Category subcomponents', () => {
+  wrapper.update()
+
   assertCategoryContainer(0, '1', 1, 'title1', 'excerpt1', 1)
   assertCategoryContainer(1, '2', 2, 'title2', 'excerpt2', 2)
 
