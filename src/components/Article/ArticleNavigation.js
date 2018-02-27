@@ -5,14 +5,21 @@ import {connect} from 'react-redux'
 
 import './articleNavigation.scss'
 
-const ArticleNavigation = (props) => (
-  <div className="article-navigation">
-    <div className="previous-next-article">
-      {getPreviousArticle(props.categoryId, props.articleId, props.articles, props.dispatch)}
-      {getNextArticle(props.categoryId, props.articleId, props.articles, props.dispatch)}
-    </div>
-  </div>
-)
+const ArticleNavigation = (props) => {
+  let previousArticle = getPreviousArticle(props.categoryId, props.articleId, props.articles, props.dispatch)
+  let nextArticle = getNextArticle(props.categoryId, props.articleId, props.articles, props.dispatch)
+
+  if(previousArticle || nextArticle) {
+    return (
+      <div className="article-navigation">
+        <div className="previous-next-article">
+          {previousArticle}
+          {nextArticle}
+        </div>
+      </div>
+    )
+  } else return null
+}
 
 ArticleNavigation.propTypes = {
   categoryId: PropTypes.number.isRequired,
