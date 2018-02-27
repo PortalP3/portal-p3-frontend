@@ -26,26 +26,28 @@ class Article extends Component {
   }
 
   render() {
-    return (<div className="article-container">
-      <div className="article">
+    return (
+      <div className="article-container">
+        <div className="article">
 
-        <div className="back-to-category">
-          <Link to={`/category/${this.props.categoryId}`}>&laquo; Volver a {this.capitalizeString(this.props.headerTitle)}</Link>
+          <div className="back-to-category">
+            <Link to={`/category/${this.props.categoryId}`}>&laquo; Volver a {this.capitalizeString(this.props.headerTitle)}</Link>
+          </div>
+
+          <h1>{this.props.content.title.rendered}</h1>
+          <div className="article-meta">
+            <span>Fecha de creación: {new Date(this.props.content.date).toLocaleDateString('es-ES')}</span>
+            <span>Fecha de modificación: {new Date(this.props.content.modified).toLocaleDateString('es-ES')}</span>
+            <span>Autor: {this.props.authorName}</span>
+          </div>
+          {renderHTML(this.props.content.content.rendered)}
         </div>
 
-        <h1>{this.props.content.title.rendered}</h1>
-        <div className="article-meta">
-          <span>Fecha de creación: {new Date(this.props.content.date).toLocaleDateString('es-ES')}</span>
-          <span>Fecha de modificación: {new Date(this.props.content.modified).toLocaleDateString('es-ES')}</span>
-          <span>Autor: {this.props.authorName}</span>
-        </div>
-        {renderHTML(this.props.content.content.rendered)}
+        <ArticleNavigation categoryId={this.props.categoryId} articleId={this.props.articleId} />
+
+        <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
       </div>
-
-      <ArticleNavigation categoryId={this.props.categoryId} articleId={this.props.articleId} />
-
-      <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
-    </div>)
+    )
   }
 
 }
