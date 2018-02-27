@@ -101,3 +101,17 @@ test('render link for next article when there is no previous article', () => {
   expect(nextLink.props()['to']).toEqual('/category/1/article/2')
   expect(nextLink.text()).toEqual('title2 »')
 })
+
+test('return null when no previous or next article', () => {
+  let store = createStore(reducers)
+
+  let wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <ArticleNavigation categoryId={1} articleId={1} />
+      </MemoryRouter>
+    </Provider>
+  )
+
+  expect(wrapper.find('.article-navigation')).toHaveLength(0)
+})
