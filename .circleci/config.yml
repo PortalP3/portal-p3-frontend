@@ -12,7 +12,7 @@ jobs:
     steps:
       - run:
           name: Install system tools
-          command: pacman -Sy && pacman -S --noconfirm git openssh make nodejs-lts-carbon yarn
+          command: pacman -Sy && pacman -S --noconfirm git openssh make nodejs-lts-carbon yarn npm
 
       - checkout
 
