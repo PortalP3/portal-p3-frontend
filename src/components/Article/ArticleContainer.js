@@ -18,6 +18,7 @@ class ArticleContainer extends Component {
   }
 
   async componentDidMount() {
+    this.props.dispatch({type: 'CATEGORY_RESET_ARTICLES'})
     await this.loadCategory(this.props.categoryId)
   }
 
