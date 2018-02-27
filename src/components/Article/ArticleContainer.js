@@ -13,12 +13,13 @@ import './articleContainer.scss'
 
 class ArticleContainer extends Component {
 
-  constructor(props) {
-    super(props)
+  componentWillMount() {
+    if(this.props.articles.length > 0) {
+      this.props.dispatch({type: 'CATEGORY_RESET_ARTICLES'})
+    }
   }
 
   async componentDidMount() {
-    this.props.dispatch({type: 'CATEGORY_RESET_ARTICLES'})
     await this.loadCategory(this.props.categoryId)
   }
 
