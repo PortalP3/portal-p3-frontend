@@ -9,6 +9,8 @@ import App from './components/App/App'
 
 const root = document.getElementById("root");
 
+console.log(process.env.ENVIRONMENT)
+
 ReactDom.render(
   <Provider store={createStore(reducers, applyMiddleware(logger))}>
     <App />
