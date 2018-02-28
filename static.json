@@ -2,7 +2,7 @@
   "root": "dist/",
   "https_only": true,
   "routes": {
-    "/assets/*": "/assets/",
+    "/assets/images/*": "/assets/images/",
     "/**": "index.html"
   },
   "proxies": {
