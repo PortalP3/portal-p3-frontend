@@ -6,7 +6,9 @@ module.exports = Merge(CommonConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'ENVIRONMENT': JSON.stringify('DEV')
+        'ENVIRONMENT': JSON.stringify('DEV'),
+        'SERVICE_URL': JSON.stringify('https://abacaxi-p3-api.herokuapp.com'),
+        'BASE_URL': JSON.stringify('index.php/wp-json/wp/v2')
       }
     })
   ],

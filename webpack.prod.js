@@ -7,7 +7,9 @@ module.exports = Merge(CommonConfig, {
   plugins: [
     new webpack.DefinePlugin({
       'process.env': {
-        'ENVIRONMENT': JSON.stringify('PROD')
+        'ENVIRONMENT': JSON.stringify('PROD'),
+        'SERVICE_URL': JSON.stringify('https://abacaxi-p3-frontend.herokuapp.com'),
+        'BASE_URL': JSON.stringify('api')
       }
     }),
     new webpack.optimize.UglifyJsPlugin({
