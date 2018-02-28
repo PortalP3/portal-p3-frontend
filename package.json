@@ -20,7 +20,7 @@
     "test": "jest --coverage",
     "functional-test": "mocha -c --timeout 90000 --require babel-register --require test/hooks/css-modules-compiler.js --require babel-polyfill -r ./test/.setup.js --recursive ./test/functional",
     "test:watch": "yarn test -- --watch",
-    "postinstall": "postinstall-build dist --script build:prod"
+    "postinstall": "postinstall-build dist --script build:prod && cp -r ./assets/ ./dist/"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",
