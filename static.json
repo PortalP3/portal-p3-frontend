@@ -7,7 +7,7 @@
   },
   "proxies": {
     "/api/rating/": {
-      "origin": "https://abacaxi-backend.herokuapp.com/wp-admin/admin-ajax.php?action=rate_post"
+      "origin": "https://abacaxi-backend.herokuapp.com/wp-admin/admin-ajax.php"
     },
     "/api/": {
       "origin": "https://abacaxi-backend.herokuapp.com/index.php/wp-json/wp/v2"
