@@ -8,7 +8,8 @@ module.exports = Merge(CommonConfig, {
       'process.env': {
         'ENVIRONMENT': JSON.stringify('DEV'),
         'SERVICE_URL': JSON.stringify('https://abacaxi-backend.herokuapp.com'),
-        'BASE_URL': JSON.stringify('index.php/wp-json/wp/v2')
+        'BASE_URL': JSON.stringify('index.php/wp-json/wp/v2'),
+        'RATE_POST_URL': JSON.stringify('wp-admin/admin-ajax.php')
       }
     })
   ],
