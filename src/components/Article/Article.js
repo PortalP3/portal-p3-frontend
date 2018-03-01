@@ -6,6 +6,7 @@ import {Link} from 'react-router-dom'
 
 import CategoryContainer from '../Category/CategoryContainer'
 import ArticleNavigation from './ArticleNavigation'
+import Rating from '../Rating/Rating';
 
 import WordpressClient from '../../clients/WordpressClient'
 
@@ -41,6 +42,9 @@ class Article extends Component {
             <span>Autor: {this.props.authorName}</span>
           </div>
           {renderHTML(this.props.content.content.rendered)}
+
+          <Rating articleMeta={this.props.content.post_meta_fields} />
+
         </div>
 
         <ArticleNavigation categoryId={this.props.categoryId} articleId={this.props.articleId} />
