@@ -1,15 +1,50 @@
-import React from 'react'
+import React, {Component} from 'react'
 import PropTypes from 'prop-types'
+import WordpressClient from '../../clients/WordpressClient';
 
-const Rating = (props) => (
-  <div className="rating">
-    <span>Rating {props.articleMeta.rating}</span>
-    <span>Votos {props.articleMeta.votes}</span>
-  </div>
-)
+import './rating.scss'
 
-Rating.propTypes = {
-  articleMeta: PropTypes.shape().isRequired
+export default class Rating extends Component {
+  constructor(props) {
+    super(props)
+
+    this.state = {
+      rating: this.props.articleMeta.rating,
+      votes: this.props.articleMeta.votes
+    }
+  }
+
+  sendVote() {
+    this.props.wordpressClient.ratePost(this.props.articleId, this.state.rating).then(result => {
+      this.setState({rating: result.data.rating})
+    })
+  }
+
+  render() {
+    return (
+      <div className="rating">
+        <span>Rating {this.props.articleMeta.rating}</span>
+        <span>Votos {this.props.articleMeta.votes}</span>
+
+        <input 
+          type="text" 
+          onChange={(value) => {
+            this.setState({rating: value.target.value})
+          }}
+        />
+
+        <input type="button" onClick={() => this.sendVote()} />
+      </div>
+    )
+  }
 }
 
-export default Rating
+Rating.propTypes = {
+  articleMeta: PropTypes.shape().isRequired,
+  articleId: PropTypes.number.isRequired,
+  wordpressClient: PropTypes.shape().isRequired
+}
+
+Rating.defaultProps = {
+  wordpressClient: new WordpressClient()
+}

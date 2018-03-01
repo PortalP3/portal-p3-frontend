@@ -43,7 +43,7 @@ class Article extends Component {
           </div>
           {renderHTML(this.props.content.content.rendered)}
 
-          <Rating articleMeta={this.props.content.post_meta_fields} />
+          <Rating articleMeta={this.props.content.post_meta_fields} articleId={this.props.articleId} />
 
         </div>
 
