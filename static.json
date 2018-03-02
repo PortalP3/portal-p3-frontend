@@ -6,11 +6,14 @@
     "/**": "index.html"
   },
   "proxies": {
+    "/api/nonce/": {
+      "origin": "${API_APP_NAME}/index.php/wp-json/nonce/v1/get"
+    },
     "/api/rating/": {
-      "origin": "https://abacaxi-backend.herokuapp.com/wp-admin/admin-ajax.php"
+      "origin": "${API_APP_NAME}/wp-admin/admin-ajax.php"
     },
     "/api/": {
-      "origin": "https://abacaxi-backend.herokuapp.com/index.php/wp-json/wp/v2"
+      "origin": "${API_APP_NAME}/index.php/wp-json/wp/v2"
     }
   },
   "headers": {
