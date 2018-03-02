@@ -16,6 +16,10 @@ const article1 = {
   },
   content: {
     rendered: 'excerpt1'
+  },
+  post_meta_fields: {
+    rating: 1.0,
+    votes: 2
   }
 }
 
