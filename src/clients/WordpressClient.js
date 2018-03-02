@@ -17,7 +17,7 @@ export default class WordpressClient {
   }
 
   getNonce() {
-    return axios.get(`${process.env.SERVICE_URL}/index.php/wp-json/nonce/v1/get`)
+    return axios.get(`${process.env.SERVICE_URL}/api/nonce/get/`)
   }
 
   async ratePost(post, value) {
