@@ -6,7 +6,7 @@ lint:
 	yarn lint-css
 
 unit-test: install-dependencies lint
-	yarn test --ignore-scripts
+	yarn test
 
 build-assets-%:
 	yarn install --ignore-scripts
