@@ -9,7 +9,7 @@
     "/api/nonce/": {
       "origin": "${API_APP_NAME}/index.php/wp-json/nonce/v1/"
     },
-    "/api/rating/": {
+    "/api/rating": {
       "origin": "${API_APP_NAME}/wp-admin/admin-ajax.php"
     },
     "/api/": {
