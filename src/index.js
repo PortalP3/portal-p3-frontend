@@ -7,7 +7,7 @@ import logger from 'redux-logger'
 import reducers from '../redux/reducers/Reducers'
 import App from './components/App/App'
 
-const development = process.env.ENVIRONMENT === 'DEV'
+const development = (process.env.ENVIRONMENT === 'DEV') || (process.env.ENVIRONMENT === 'STAGING')
 let store
 
 if(development) {
