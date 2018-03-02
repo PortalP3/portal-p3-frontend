@@ -12,7 +12,7 @@
   },
   "scripts": {
     "build:dev": "webpack --progress --colors -d --env=dev",
-    "build:uat": "webpack --progress --colors -d --env=uat",
+    "build:staging": "webpack --progress --colors -d --env=staging",
     "build:prod": "webpack --define process.env.NODE_ENV='\"production\"' --progress --colors --env=prod",
     "start": "webpack-dev-server --port 8080 --progress --colors -d --env=dev",
     "lint-js": "eslint --config .eslintrc.json ./src",
@@ -20,7 +20,7 @@
     "test": "jest --coverage",
     "functional-test": "mocha -c --timeout 90000 --require babel-register --require test/hooks/css-modules-compiler.js --require babel-polyfill -r ./test/.setup.js --recursive ./test/functional",
     "test:watch": "yarn test -- --watch",
-    "postinstall": "postinstall-build dist --script build:prod && cp -r ./assets/ ./dist/"
+    "postinstall": "make deploy-assets-${ENVIRONMENT}"
   },
   "devDependencies": {
     "babel-core": "^6.24.1",

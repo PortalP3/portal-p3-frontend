@@ -12,6 +12,9 @@ build-assets-%:
 	yarn install
 	yarn build:${*}
 
+deploy-assets-%: build-assets-%
+	cp -r ./assets/ ./dist/
+
 build-image-%: build-assets-%
 	docker build -t abacaxi-frontend -f docker/Dockerfile .
 
