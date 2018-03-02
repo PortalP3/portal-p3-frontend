@@ -9,7 +9,7 @@ unit-test: install-dependencies lint
 	yarn test
 
 build-assets-%:
-	yarn install --ignore-scripts
+	yarn install --ignore-scripts --production=false
 	yarn build:${*}
 
 deploy-assets-%: build-assets-%
