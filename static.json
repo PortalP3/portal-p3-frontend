@@ -20,7 +20,7 @@
     "/": {
       "Cache-Control": "no-store, no-cache"
     },
-    "/api/nonce/": {
+    "/api/nonce/*": {
       "Access-Control-Allow-Origin": "*"
     },
     "**.js": {
