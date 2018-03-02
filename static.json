@@ -20,7 +20,7 @@
     "/": {
       "Cache-Control": "no-store, no-cache"
     },
-    "/api/**": {
+    "/api/rating": {
       "Access-Control-Allow-Origin": "*"
     },
     "**.js": {
