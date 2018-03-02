@@ -17,14 +17,15 @@ export default class Rating extends Component {
   sendVote() {
     this.props.wordpressClient.ratePost(this.props.articleId, this.state.rating).then(result => {
       this.setState({rating: result.data.rating})
+      this.setState({votes: result.data.votes})
     })
   }
 
   render() {
     return (
       <div className="rating">
-        <span>Rating {this.props.articleMeta.rating}</span>
-        <span>Votos {this.props.articleMeta.votes}</span>
+        <span>Rating {this.state.rating}</span>
+        <span>Votos {this.state.votes}</span>
 
         <input 
           type="text" 
