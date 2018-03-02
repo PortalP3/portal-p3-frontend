@@ -1,16 +1,16 @@
 install-dependencies:
-	yarn install
+	yarn install --ignore-scripts
 
 lint:
-	yarn lint-js
-	yarn lint-css
+	yarn lint-js --ignore-scripts
+	yarn lint-css --ignore-scripts
 
 unit-test: install-dependencies lint
-	yarn test
+	yarn test --ignore-scripts
 
 build-assets-%:
-	yarn install
-	yarn build:${*}
+	yarn install --ignore-scripts
+	yarn build:${*} --ignore-scripts
 
 deploy-assets-%: build-assets-%
 	cp -r ./assets/ ./dist/
