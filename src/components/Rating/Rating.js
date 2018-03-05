@@ -21,8 +21,8 @@ export default class Rating extends Component {
     }
   }
 
-  async sendVote() {
-    let result = await this.props.wordpressClient.ratePost(this.props.articleId, this.state.rating)
+  async sendVote(value) {
+    let result = await this.props.wordpressClient.ratePost(this.props.articleId, value.target.value)
     this.setState({rating: result.data.rating})
     this.setState({votes: result.data.votes})
   }
@@ -32,12 +32,26 @@ export default class Rating extends Component {
       <div className="rating">
         <span>Rating {this.state.rating}</span>
         <span>Votos {this.state.votes}</span>
-
         <input 
-          type="text" 
-          onChange={(value) => {
-            this.setState({rating: value.target.value})
-          }}
+          type="radio" 
+          onClick={(value) => {
+            this.sendVote(value)
+          }} 
+          value="1" 
+        />
+        <input 
+          type="radio" 
+          onClick={(value) => {
+            this.sendVote(value)
+          }} 
+          value="2" 
+        />
+        <input 
+          type="radio" 
+          onClick={(value) => {
+            this.sendVote(value)
+          }} 
+          value="3" 
         />
 
         <input type="button" onClick={() => this.sendVote()} />
