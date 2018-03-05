@@ -14,6 +14,13 @@ export default class Rating extends Component {
     }
   }
 
+  componentWillReceiveProps(nextProps) {
+    if(this.props.articleId !== nextProps.articleId) {
+      this.setState({rating: nextProps.articleMeta.rating})
+      this.setState({votes: nextProps.articleMeta.votes})
+    }
+  }
+
   sendVote() {
     this.props.wordpressClient.ratePost(this.props.articleId, this.state.rating).then(result => {
       this.setState({rating: result.data.rating})
