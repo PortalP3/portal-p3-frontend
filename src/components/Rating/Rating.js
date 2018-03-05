@@ -21,11 +21,10 @@ export default class Rating extends Component {
     }
   }
 
-  sendVote() {
-    this.props.wordpressClient.ratePost(this.props.articleId, this.state.rating).then(result => {
-      this.setState({rating: result.data.rating})
-      this.setState({votes: result.data.votes})
-    })
+  async sendVote() {
+    let result = await this.props.wordpressClient.ratePost(this.props.articleId, this.state.rating)
+    this.setState({rating: result.data.rating})
+    this.setState({votes: result.data.votes})
   }
 
   render() {
