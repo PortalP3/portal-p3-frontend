@@ -13,18 +13,21 @@ header {
     margin: 40px auto;
     max-width: 1050px;
     background: rgba(49, 24, 48, 0.7);
-  }
 
-  .logo-portal {
-    color: #d2d3c6;
-    font-size: 60px;
-    font-weight: 700;
-    padding: 120px;
+    .logo-portal {
+      color: #d2d3c6;
+      padding: 120px;
 
-    p {
-      font-size: 18px;
-      font-weight: 100;
-      width: 500px;
+      p {
+        font-size: 18px;
+        font-weight: 100;
+        width: 500px;
+      }
+
+      h1 {
+        font-size: 60px;
+        font-weight: 700;
+      }
     }
   }
 }

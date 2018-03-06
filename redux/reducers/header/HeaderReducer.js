@@ -1,5 +1,5 @@
 const initialValues = {
-  title: 'PORTAL P3',
+  title: 'AMAWTA',
   description: 'Esta plataforma tiene como objetivo el compartir conocimiento crítico que pueda alimentar nuestro compromiso por la justicia social y económica'
 }
 
