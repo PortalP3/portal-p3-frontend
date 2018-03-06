@@ -21,9 +21,8 @@ test('render inner div', () => {
 })
 
 test('render header title', () => {
-  expect(wrapper.find('header').find('.logo-portal-info-container').find('.logo-portal')
-    .text()).toEqual('PORTAL P3Esta plataforma tiene como objetivo el compartir conocimiento' +
-      ' crítico que pueda alimentar nuestro compromiso por la justicia social y económica')
+  let logo = wrapper.find('header').find('.logo-portal-info-container').find('.logo-portal')
+  expect(logo.find('h1').text()).toEqual('AMAWTA')
 })
 
 test('render header subtitle in a separate paragraph', () => {
