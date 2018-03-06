@@ -9,7 +9,10 @@ module.exports = Merge(CommonConfig, {
         'ENVIRONMENT': JSON.stringify('STAGING'),
         'SERVICE_URL': JSON.stringify('https://staging-abacaxi-frontend.herokuapp.com'),
         'BASE_URL': JSON.stringify('api'),
-        'RATE_POST_URL': JSON.stringify('api/rating')
+        'RATE_POST_URL': JSON.stringify('api/rating'),
+        'TOGGLES': {
+          'RATING': true
+        }
       }
     })
   ],
