@@ -3,4 +3,8 @@
 .rating {
   display: flex;
   flex-direction: column;
+
+  .stars {
+    display: flex;
+  }
 }
