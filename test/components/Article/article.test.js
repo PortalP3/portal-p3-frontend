@@ -7,6 +7,10 @@ import {MemoryRouter} from 'react-router-dom'
 import Article from '../../../src/components/Article/Article'
 import reducers from '../../../redux/reducers/Reducers'
 
+process.env.TOGGLES = {
+  RATING: false
+}
+
 const article1 = {
   id: '1',
   date: '2018-02-02T14:19:11',
