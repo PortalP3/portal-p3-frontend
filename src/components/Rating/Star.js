@@ -7,7 +7,7 @@ const Star = (props) => {
     <input 
       name={props.id}
       type="radio"
-      checked={isVoted}
+      defaultChecked={isVoted}
       disabled={props.voted} 
       onClick={(value) => {
         props.onClick(value)

@@ -11,9 +11,7 @@ module.exports = Merge(CommonConfig, {
         'BASE_URL': JSON.stringify('api'),
         'RATE_POST_URL': JSON.stringify('api/rating'),
         'HOTJAR': JSON.stringify(''),
-        'TOGGLES': {
-          'RATING': true
-        }
+        'TOGGLE_RATING': JSON.stringify('ON')
       }
     })
   ],
