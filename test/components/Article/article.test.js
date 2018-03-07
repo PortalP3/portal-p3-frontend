@@ -7,10 +7,6 @@ import {MemoryRouter} from 'react-router-dom'
 import Article from '../../../src/components/Article/Article'
 import reducers from '../../../redux/reducers/Reducers'
 
-process.env.TOGGLES = {
-  RATING: false
-}
-
 const article1 = {
   id: '1',
   date: '2018-02-02T14:19:11',
@@ -103,3 +99,24 @@ test('render link for category of article', () => {
   expect(link.props()['to']).toEqual('/category/1')
   expect(link.text()).toEqual('« Volver a Category 1')
 })
+
+test('not render rating component when feature toggle rating is off', () => {
+  global.process.env.TOGGLE_RATING = 'OFF'
+
+  expect(wrapper.find('Rating')).toHaveLength(0)
+})
+
+test('render rating component when feature toggle rating is on', () => {
+  global.process.env.TOGGLE_RATING = 'ON'
+
+  let wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Article categoryId={1} articleId={10} wordpressClient={wordpressClient} />
+      </MemoryRouter>
+    </Provider>
+  )
+  
+  expect(wrapper.find('Rating')).toHaveLength(1)
+})
+

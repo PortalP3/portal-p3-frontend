@@ -10,10 +10,14 @@ module.exports = Merge(CommonConfig, {
         'SERVICE_URL': JSON.stringify('https://staging-abacaxi-frontend.herokuapp.com'),
         'BASE_URL': JSON.stringify('api'),
         'RATE_POST_URL': JSON.stringify('api/rating'),
+<<<<<<< HEAD
         'HOTJAR': JSON.stringify('812800'),
         'TOGGLES': {
           'RATING': true
         }
+=======
+        'TOGGLE_RATING': JSON.stringify('ON')
+>>>>>>> T136 [Javier/JC] Se agregan tests para feature toggle de Rating
       }
     })
   ],
