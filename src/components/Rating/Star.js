@@ -1,26 +1,30 @@
 import React from 'react'
 import PropTypes from 'prop-types'
 
+import './star.scss'
+
 const Star = (props) => {
   let isVoted = Math.round(props.rating) >= props.value ? true : false
   return (
-    <input 
-      name={props.id}
-      type="radio"
-      defaultChecked={isVoted}
-      disabled={props.voted} 
-      onClick={(value) => {
-        props.onClick(value)
-        console.log(value.target.value)
-      }} 
-      value={props.value}
-    />
+    <div className="star">
+      <input 
+        id={`s${props.value}`}
+        name={`s${props.value}`}
+        type="radio"
+        checked={isVoted}
+        onClick={(value) => {
+          props.onClick(value)
+          console.log(value.target.value)
+        }} 
+        value={props.value}
+        readOnly
+      />
+      <label className="star-default" htmlFor={`s${props.value}`} />
+    </div>
 )}
 
 Star.propTypes = {
-  id: PropTypes.string.isRequired,
-  value: PropTypes.string.isRequired,
-  voted: PropTypes.bool.isRequired,
+  value: PropTypes.number.isRequired,
   onClick: PropTypes.func.isRequired,
   rating: PropTypes.number.isRequired
 }

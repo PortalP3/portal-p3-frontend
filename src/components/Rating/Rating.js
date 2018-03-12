@@ -11,20 +11,20 @@ export default class Rating extends Component {
     super(props)
 
     this.state = {
-      rating: this.props.articleMeta.rating,
-      votes: this.props.articleMeta.votes,
-      voted: false
+      rating: parseFloat(this.props.articleMeta.rating[0]),
+      votes: parseInt(this.props.articleMeta.votes[0]),
     }
 
     this.sendVote = this.sendVote.bind(this)
+
+    this.stars = [1, 2, 3, 4, 5]
   }
 
   componentWillReceiveProps(nextProps) {
     if(this.props.articleId !== nextProps.articleId) {
       this.setState({
-        rating: nextProps.articleMeta.rating,
-        votes: nextProps.articleMeta.votes,
-        voted: false
+        rating: parseFloat(nextProps.articleMeta.rating[0]),
+        votes: parseInt(nextProps.articleMeta.votes[0]),
       })
     }
   }
@@ -32,9 +32,8 @@ export default class Rating extends Component {
   async sendVote(value) {
     let result = await this.props.wordpressClient.ratePost(this.props.articleId, value.target.value)
     this.setState({
-      rating: result.data.rating,
-      votes: result.data.votes,
-      voted: true
+      rating: parseFloat(result.data.rating[0]),
+      votes: parseInt(result.data.votes[0]),
     })
   }
 
@@ -44,11 +43,9 @@ export default class Rating extends Component {
         <span>Rating {this.state.rating}</span>
         <span>Votos {this.state.votes}</span>
         <div className="stars">
-          <Star id="s1" value="1" voted={this.state.voted} onClick={this.sendVote} rating={this.state.rating} />
-          <Star id="s2" value="2" voted={this.state.voted} onClick={this.sendVote} rating={this.state.rating} />
-          <Star id="s3" value="3" voted={this.state.voted} onClick={this.sendVote} rating={this.state.rating} />
-          <Star id="s4" value="4" voted={this.state.voted} onClick={this.sendVote} rating={this.state.rating} />
-          <Star id="s5" value="5" voted={this.state.voted} onClick={this.sendVote} rating={this.state.rating} />
+          {this.stars.map(star => (
+            <Star key={star} value={star} onClick={this.sendVote} rating={this.state.rating} />
+          ))}
         </div>
       </div>
     )

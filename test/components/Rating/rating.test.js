@@ -3,16 +3,16 @@ import {mount} from 'enzyme'
 import Rating from '../../../src/components/Rating/Rating'
 
 const articleMeta = {
-  rating: 1.6,
-  votes: 2
+  rating: [1.6],
+  votes: [2]
 }
 
 const wordpressClient = {
   ratePost: (post, value) => {
     return Promise.resolve({
       data: {
-        rating: 2.4,
-        votes: 3
+        rating: [2.4],
+        votes: [3]
       }
     })
   }
@@ -37,8 +37,7 @@ test('render five stars', () => {
 test('has an initial state', () => {
   let expectedState = {
     rating: 1.6,
-    votes: 2,
-    voted: false
+    votes: 2
   }
   
   expect(wrapper.state()).toEqual(expectedState)
@@ -52,8 +51,7 @@ test('state changes when sending vote', async () => {
   }
   let expectedState = {
     rating: 2.4,
-    votes: 3,
-    voted: true
+    votes: 3
   }
 
   await wrapper.instance().sendVote(vote)
@@ -64,8 +62,8 @@ test('change state when receiving new props', () => {
   let newArticleProps = {
     articleId: 2,
     articleMeta: {
-      rating: 1.0,
-      votes: 1
+      rating: [1.0],
+      votes: [1]
     }
   }
 
@@ -73,8 +71,7 @@ test('change state when receiving new props', () => {
 
   let expectedState = {
     rating: 1.0,
-    votes: 1,
-    voted: false
+    votes: 1
   }
 
   expect(wrapper.state()).toEqual(expectedState)
