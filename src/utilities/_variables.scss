@@ -52,6 +52,7 @@ $icon_medium: 15px;
 $star_checked: #000;
 $star_unchecked: #fff;
 $star_hover: pink;
+$star_size: 64px;
 
 @mixin btn-unstyled() {
   background-color: transparent;
