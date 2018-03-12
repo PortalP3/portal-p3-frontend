@@ -1,0 +1,39 @@
+.star input {
+  margin: 0;
+  padding: 0;
+  -webkit-appearance: none;
+  -moz-appearance: none;
+  appearance: none;
+}
+
+.star input:active + .star-default {
+  opacity: 0.9;
+}
+
+.star input:checked + .star-default {
+  -webkit-filter: none;
+  -moz-filter: none;
+  filter: none;
+}
+
+.star-default {
+  cursor: pointer;
+  background-image: url('/assets/images/star-default.png');
+  background-size: contain;
+  background-repeat: no-repeat;
+  display: inline-block;
+  width: 100px;
+  height: 70px;
+  -webkit-transition: all 100ms ease-in;
+  -moz-transition: all 100ms ease-in;
+  transition: all 100ms ease-in;
+  -webkit-filter: brightness(1) grayscale(1) opacity(1);
+  -moz-filter: brightness(1) grayscale(1) opacity(1);
+  filter: brightness(1) grayscale(1) opacity(1);
+}
+
+.star-default:hover {
+  -webkit-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  -moz-filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+  filter: brightness(1.2) grayscale(0.5) opacity(0.9);
+}
