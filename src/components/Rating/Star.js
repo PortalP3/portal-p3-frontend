@@ -14,7 +14,6 @@ const Star = (props) => {
         checked={isVoted}
         onClick={(value) => {
           props.onClick(value)
-          console.log(value.target.value)
         }} 
         value={props.value}
         readOnly
