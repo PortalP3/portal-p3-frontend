@@ -11,8 +11,8 @@ const wordpressClient = {
   ratePost: (post, value) => {
     return Promise.resolve({
       data: {
-        rating: [2.4],
-        votes: [3]
+        rating: "2.4",
+        votes: 3
       }
     })
   }

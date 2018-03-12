@@ -31,9 +31,10 @@ export default class Rating extends Component {
 
   async sendVote(value) {
     let result = await this.props.wordpressClient.ratePost(this.props.articleId, value.target.value)
+
     this.setState({
-      rating: parseFloat(result.data.rating[0]),
-      votes: parseInt(result.data.votes[0]),
+      rating: parseFloat(result.data.rating),
+      votes: result.data.votes,
     })
   }
 

@@ -8,8 +8,8 @@ const Star = (props) => {
   return (
     <div className="star">
       <input 
-        id={`s${props.value}`}
-        name={`s${props.value}`}
+        id={`star-${props.value}`}
+        name={`star-${props.value}`}
         type="radio"
         checked={isVoted}
         onClick={(value) => {
@@ -18,7 +18,7 @@ const Star = (props) => {
         value={props.value}
         readOnly
       />
-      <label className="star-default" htmlFor={`s${props.value}`} />
+      <label htmlFor={`star-${props.value}`} />
     </div>
 )}
 

@@ -9,32 +9,32 @@
     appearance: none;
   }
 
-  input:checked + .star-default {
+  input:checked + label {
     -webkit-filter: none;
     -moz-filter: none;
     filter: none;
     background-color: $star_checked;
   }
 
-  input:hover + .star-default {
+  input:hover + label {
     background-color: $star_unchecked;
   }
 
-  input:hover + .star-default {
+  input:hover + label {
     background-color: $star_hover;
   }
 
-  .star-default {
+  label {
     cursor: pointer;
     background-image: url('/assets/images/star-default.png');
     background-size: contain;
+    background-color: $star_unchecked;
     background-repeat: no-repeat;
     display: inline-block;
-    width: 64px;
-    height: 64px;
+    width: $star_size;
+    height: $star_size;
     -webkit-transition: all 100ms ease-in;
     -moz-transition: all 100ms ease-in;
     transition: all 100ms ease-in;
-    background-color: $star_unchecked;
   }
 }
