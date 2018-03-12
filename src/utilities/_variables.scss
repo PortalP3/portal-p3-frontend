@@ -49,6 +49,10 @@ $mobile_screen: 576px;
 
 $icon_medium: 15px;
 
+$star_checked: #000;
+$star_unchecked: #fff;
+$star_hover: pink;
+
 @mixin btn-unstyled() {
   background-color: transparent;
   border-style: none;
