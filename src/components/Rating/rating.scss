@@ -3,6 +3,13 @@
 .rating {
   display: flex;
   flex-direction: column;
+  align-items: center;
+  padding: $space_extra_medium 0 $space_extra_fat 0;
+
+  h3 {
+    font-size: 30px;
+    color: $purple;
+  }
 
   .stars {
     display: flex;

@@ -41,8 +41,7 @@ export default class Rating extends Component {
   render() {
     return (
       <div className="rating">
-        <span>Rating {this.state.rating}</span>
-        <span>Votos {this.state.votes}</span>
+        <h3>¿Qué te pareció el artículo?</h3>
         <div className="stars">
           {this.stars.map(star => (
             <Star key={star} value={star} onClick={this.sendVote} rating={this.state.rating} />

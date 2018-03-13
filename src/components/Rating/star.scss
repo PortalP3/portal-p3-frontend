@@ -1,6 +1,8 @@
 @import "src/utilities/_variables";
 
 .star {
+  margin: 0 $space_extra_thin;
+
   input {
     margin: 0;
     padding: 0;
