@@ -100,23 +100,7 @@ test('render link for category of article', () => {
   expect(link.text()).toEqual('« Volver a Category 1')
 })
 
-test('not render rating component when feature toggle rating is off', () => {
-  global.process.env.TOGGLE_RATING = 'OFF'
-
-  expect(wrapper.find('Rating')).toHaveLength(0)
-})
-
-test('render rating component when feature toggle rating is on', () => {
-  global.process.env.TOGGLE_RATING = 'ON'
-
-  let wrapper = mount(
-    <Provider store={store}>
-      <MemoryRouter>
-        <Article categoryId={1} articleId={10} wordpressClient={wordpressClient} />
-      </MemoryRouter>
-    </Provider>
-  )
-  
-  expect(wrapper.find('Rating')).toHaveLength(1)
+test('render rating component', () => {
+  expect(wrapper.find('.article-container').find('.article').find('Rating')).toHaveLength(1)
 })
 

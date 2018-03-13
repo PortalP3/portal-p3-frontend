@@ -27,8 +27,6 @@ class Article extends Component {
   }
 
   render() {
-    let rating = process.env.TOGGLE_RATING === 'ON' ? <Rating articleMeta={this.props.content.post_meta_fields} articleId={this.props.articleId} /> : null
-
     return (
       <div className="article-container">
         <div className="article">
@@ -45,7 +43,7 @@ class Article extends Component {
           </div>
           {renderHTML(this.props.content.content.rendered)}
 
-          {rating}
+          <Rating articleMeta={this.props.content.post_meta_fields} articleId={this.props.articleId} />
 
         </div>
 
