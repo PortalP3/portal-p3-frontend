@@ -10,6 +10,7 @@ module.exports = Merge(CommonConfig, {
         'SERVICE_URL': JSON.stringify('https://staging-abacaxi-frontend.herokuapp.com'),
         'BASE_URL': JSON.stringify('api'),
         'RATE_POST_URL': JSON.stringify('api/rating'),
+        'HOTJAR': JSON.stringify('812800'),
         'TOGGLES': {
           'RATING': true
         }
