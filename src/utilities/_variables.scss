@@ -3,7 +3,7 @@ $space_thin: 10px;
 $space_medium: 15px;
 $space_extra_medium: 20px;
 $space_fat: 30px;
-$space_extra_fat: 60px;
+$space_extra_fat: 40px;
 
 $font_huge: 2.4em;
 $font_extra_large: 1.6em;
@@ -49,10 +49,10 @@ $mobile_screen: 576px;
 
 $icon_medium: 15px;
 
-$star_checked: #000;
+$star_checked: $purple;
 $star_unchecked: #fff;
-$star_hover: pink;
-$star_size: 64px;
+$star_hover: $orange;
+$star_size: 40px;
 
 @mixin btn-unstyled() {
   background-color: transparent;

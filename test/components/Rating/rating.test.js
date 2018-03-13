@@ -76,3 +76,8 @@ test('change state when receiving new props', () => {
 
   expect(wrapper.state()).toEqual(expectedState)
 })
+
+test('render feedback title', () => {
+  let expectedTitle = '¿Qué te pareció el artículo?'
+  expect(wrapper.find('.rating').find('h3').text()).toEqual(expectedTitle)
+})
