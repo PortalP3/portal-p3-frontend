@@ -58,9 +58,37 @@ test('state changes when sending vote', async () => {
   expect(wrapper.state()).toEqual(expectedState)
 })
 
-test('change state when receiving new props', () => {
+test('render component when props are undefined', () => {
+  let wrapper = mount(
+    <Rating
+      articleMeta={{}}
+      articleId={1} 
+      wordpressClient={wordpressClient}
+    />
+  )
+
+  expect(wrapper.find('.rating')).toHaveLength(1)
+})
+
+test('render component when receiving undefined props in componentWillReceiveProps', () => {
   let newArticleProps = {
     articleId: 2,
+    articleMeta: {}
+  }
+
+  wrapper.setProps(newArticleProps)
+
+  let expectedState = {
+    rating: 0,
+    votes: 0
+  }
+
+  expect(wrapper.state()).toEqual(expectedState)
+})
+
+test('change state when receiving new props', () => {
+  let newArticleProps = {
+    articleId: 3,
     articleMeta: {
       rating: [1.0],
       votes: [1]
