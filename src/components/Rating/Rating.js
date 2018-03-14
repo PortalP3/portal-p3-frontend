@@ -11,8 +11,8 @@ export default class Rating extends Component {
     super(props)
 
     this.state = {
-      rating: parseFloat(this.props.articleMeta.rating[0]),
-      votes: parseInt(this.props.articleMeta.votes[0]),
+      rating: parseFloat(this.getValueFromProp(this.props.articleMeta.rating)),
+      votes: parseInt(this.getValueFromProp(this.props.articleMeta.votes))
     }
 
     this.sendVote = this.sendVote.bind(this)
@@ -23,10 +23,14 @@ export default class Rating extends Component {
   componentWillReceiveProps(nextProps) {
     if(this.props.articleId !== nextProps.articleId) {
       this.setState({
-        rating: parseFloat(nextProps.articleMeta.rating[0]),
-        votes: parseInt(nextProps.articleMeta.votes[0]),
+        rating: parseFloat(this.getValueFromProp(nextProps.articleMeta.rating)),
+        votes: parseInt(this.getValueFromProp(nextProps.articleMeta.votes))
       })
     }
+  }
+
+  getValueFromProp(value) {
+    return value ? value[0] : 0
   }
 
   async sendVote(value) {
