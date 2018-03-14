@@ -3,11 +3,11 @@
 
 body {
   margin: 0;
-  background: #d2d3c6;
+  background: $body_background;
   font-family: $font_family;
 }
 
-div.app {
+.app {
   display: flex;
   justify-content: center;
   flex-direction: column;

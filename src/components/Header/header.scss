@@ -11,7 +11,7 @@ header {
     justify-content: center;
     text-align: center;
     margin: 40px auto;
-    max-width: 1050px;
+    max-width: $container_width;
     background: rgba(49, 24, 48, 0.7);
 
     .logo-portal {

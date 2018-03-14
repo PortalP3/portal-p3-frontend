@@ -1,0 +1,22 @@
+@import "src/utilities/_variables";
+
+.home-tab {
+  position: fixed;
+  background: $dark_gray;
+  top: 0;
+  right: 0;
+  width: 315px;
+
+  a {
+    color: $white;
+    padding: $space_thin $space_extra_medium;
+    line-height: $space_extra_fat;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: $font_bold;
+  }
+
+  a:hover {
+    color: $orange;
+  }
+}

@@ -1,6 +1,8 @@
+@import "src/utilities/_variables";
+
 footer {
-  background: #17141f;
-  color: #828282;
+  background: $dark_gray;
+  color: $light_gray;
   text-align: center;
   font-size: 14px;
 }
