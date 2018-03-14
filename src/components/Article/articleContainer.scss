@@ -1,10 +1,9 @@
 @import "src/utilities/_variables";
 
 .article-container {
-  background: #d2d3c6;
-  padding: 0 20px;
-  margin-left: 290px;
-  margin-right: 290px;
+  background: $body_background;
+  width: $container_width;
+  margin: 0 auto;
 }
 
 a {
