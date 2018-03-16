@@ -20,7 +20,8 @@ const article1 = {
   post_meta_fields: {
     rating: 1.0,
     votes: 2
-  }
+  },
+  author_name: 'author1'
 }
 
 const article2 = {
@@ -32,22 +33,11 @@ const article2 = {
   },
   content: {
     rendered: 'excerpt2'
-  }
-}
-
-const authorInfo = {
-  data: [{
-    name: 'AuthorTest'
-  }]
+  },
+  author_name: 'author2'
 }
 
 const articles = [article1, article2]
-
-const wordpressClient = {
-  getAuthorInfo: (author) => {
-    return Promise.resolve(authorInfo)
-  }
-}
 
 const store = createStore(reducers)
 let wrapper
@@ -60,7 +50,7 @@ beforeEach(() => {
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <Article categoryId={1} articleId={10} wordpressClient={wordpressClient} />
+        <Article categoryId={1} articleId={10} />
       </MemoryRouter>
     </Provider>
   )
@@ -78,7 +68,7 @@ test('render article meta', () => {
   let articleMeta = wrapper.find('.article-container').find('.article').find('.article-meta')
   expect(articleMeta.find('span').at(0).text()).toEqual('Fecha de creación: 2/2/2018')
   expect(articleMeta.find('span').at(1).text()).toEqual('Fecha de modificación: 4/2/2018')
-  expect(articleMeta.find('span').at(2).text()).toEqual('Autor: AuthorTest')
+  expect(articleMeta.find('span').at(2).text()).toEqual('Autor: author1')
 })
 
 test('render article html content', () => {

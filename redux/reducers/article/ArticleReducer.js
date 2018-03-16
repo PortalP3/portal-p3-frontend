@@ -1,6 +1,5 @@
 const initialValues = {
   content: {},
-  authorName: ''
 }
 
 const ArticleReducer = (state = initialValues, action) => {
@@ -9,11 +8,6 @@ const ArticleReducer = (state = initialValues, action) => {
       return {
         ...state,
         content: action.payload
-      }
-    case 'ARTICLE_SET_AUTHOR':
-      return {
-        ...state,
-        authorName: action.payload
       }
     default:
       return state
