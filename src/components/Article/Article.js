@@ -8,19 +8,11 @@ import CategoryContainer from '../Category/CategoryContainer'
 import ArticleNavigation from './ArticleNavigation'
 import Rating from '../Rating/Rating';
 
-import WordpressClient from '../../clients/WordpressClient'
-
 import './articleContainer.scss'
 import './article.scss'
 import '../Category/categoryContainer.scss'
 
 class Article extends Component {
-
-  componentDidMount() {
-    this.props.wordpressClient.getAuthorInfo(this.props.content.author).then(author => {
-      this.props.dispatch({type: 'ARTICLE_SET_AUTHOR', payload: author.data[0].name})
-    })
-  }
 
   capitalizeString(str) {
     return str ? str[0].toUpperCase() + str.substr(1).toLowerCase() : ''
@@ -39,7 +31,7 @@ class Article extends Component {
           <div className="article-meta">
             <span>Fecha de creación: {new Date(this.props.content.date).toLocaleDateString('es-ES')}</span>
             <span>Fecha de modificación: {new Date(this.props.content.modified).toLocaleDateString('es-ES')}</span>
-            <span>Autor: {this.props.authorName}</span>
+            <span>Autor: {this.props.content.author_name}</span>
           </div>
           {renderHTML(this.props.content.content.rendered)}
 
@@ -56,22 +48,14 @@ class Article extends Component {
 
 }
 
-Article.defaultProps = {
-  wordpressClient: new WordpressClient()
-}
-
 Article.propTypes = {
   content: PropTypes.shape().isRequired,
-  wordpressClient: PropTypes.shape().isRequired,
-  dispatch: PropTypes.func.isRequired,
-  authorName: PropTypes.string.isRequired,
   categoryId: PropTypes.number.isRequired,
   articleId: PropTypes.number.isRequired,
   headerTitle: PropTypes.string.isRequired
 }
 
 export default connect(store => ({
-  authorName: store.article.authorName,
   content: store.article.content,
   headerTitle: store.header.title
 }))(Article)
