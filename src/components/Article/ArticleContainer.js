@@ -14,13 +14,15 @@ import './articleContainer.scss'
 class ArticleContainer extends Component {
 
   componentWillMount() {
-    if(this.props.articles.length > 0) {
+    if(this.isDifferentCategory()) {
       this.props.dispatch({type: 'CATEGORY_RESET_ARTICLES'})
     }
   }
 
   async componentDidMount() {
-    await this.loadCategory(this.props.categoryId)
+    if(this.isDifferentCategory()) {
+      await this.loadCategory(this.props.categoryId)
+    }
   }
 
   async componentWillReceiveProps(nextProps) {
@@ -30,9 +32,15 @@ class ArticleContainer extends Component {
     }
   }
 
+  isDifferentCategory() {
+    if(this.props.currentCategory !== this.props.categoryId) return true
+    return false
+  }
+
   async loadCategory(categoryId) {
     this.props.dispatch({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
     let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
+    this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
     this.props.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
   }
 
@@ -72,9 +80,11 @@ ArticleContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  currentCategory: PropTypes.number.isRequired
 }
 
 export default connect(store => ({
   articles: store.category.articles,
-  categories: store.category.categories
+  categories: store.category.categories,
+  currentCategory: store.category.categoryId
 }))(ArticleContainer)
