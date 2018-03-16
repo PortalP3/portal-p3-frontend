@@ -1,6 +1,7 @@
 const initialValues = {
   articles: [],
-  categories: []
+  categories: [],
+  categoryId: 0
 }
 
 const CategoryReducer = (state = initialValues, action) => {
@@ -14,6 +15,11 @@ const CategoryReducer = (state = initialValues, action) => {
       return {
         ...state,
         articles: action.payload
+      }
+    case 'CATEGORY_SET_CURRENT_ID':
+      return {
+        ...state,
+        categoryId: action.payload
       }
     case 'CATEGORY_RESET_ARTICLES':
       return {
