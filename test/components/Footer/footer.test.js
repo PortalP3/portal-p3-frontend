@@ -10,5 +10,5 @@ test('render footer tag', () => {
 
 test('render footer text in a separate paragraph', () => {
   const wrapper = shallow(<Footer />);
-  expect(wrapper.find('footer').find('p').text()).toEqual('Portal P3 - Abacaxi - Copyrights 2018')
+  expect(wrapper.find('footer').find('p').text()).toEqual('Amawta - Copyrights 2018')
 })
