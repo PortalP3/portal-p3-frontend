@@ -56,6 +56,9 @@ const articles = {
 const wordpressClient = {
   getArticlesByCategory: (categoryId) => {
     return Promise.resolve(articles)
+  },
+  getCategories: () => {
+    return Promise.resolve(categories)
   }
 }
 
@@ -64,8 +67,8 @@ store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
 
 let wrapper
 
-beforeEach(() => {
-  wrapper = mount(
+beforeEach(async () => {
+  wrapper = await mount(
     <Provider store={store}>
       <MemoryRouter>
         <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
@@ -98,13 +101,35 @@ test('render outer div for articles', () => {
 test('render Category subcomponents', () => {
   wrapper.update()
 
-  assertCategoryContainer(0, '1', 1, 'title1', 'excerpt1', 1)
-  assertCategoryContainer(1, '2', 2, 'title2', 'excerpt2', 2)
+  assertCategoryContainer(wrapper, 0, '1', 1, 'title1', 'excerpt1', 1)
+  assertCategoryContainer(wrapper, 1, '2', 2, 'title2', 'excerpt2', 2)
 
   expect(wrapper.find('CategoryContainer').props()['title']).toEqual('OTRAS TEMÁTICAS')
 })
 
-const assertCategoryContainer = (index, key, id, title, excerpt, authorId) => {
+test('render articles when categories are not loaded before', (done) => {
+  function todo(wrapper) {
+    wrapper.update()
+    assertCategoryContainer(wrapper, 0, '1', 1, 'title1', 'excerpt1', 1)
+    done()
+  }
+  
+  let store = createStore(reducers)
+
+  let wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
+      </MemoryRouter>
+    </Provider>
+  )
+
+  setTimeout(() => {
+    todo(wrapper)
+  }, 0);
+})
+
+const assertCategoryContainer = (wrapper, index, key, id, title, excerpt, authorId) => {
   expect(wrapper.find('Connect(ArticleExcerpt)').at(index).key()).toEqual(key)
   expect(wrapper.find('ArticleExcerpt').at(index).props()['id']).toEqual(id)
   expect(wrapper.find('ArticleExcerpt').at(index).props()['title']).toEqual(title)
