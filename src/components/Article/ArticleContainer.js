@@ -38,10 +38,18 @@ class ArticleContainer extends Component {
   }
 
   async loadCategory(categoryId) {
-    this.props.dispatch({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
+    if(this.props.categories.length === 0) {
+      let categories = await this.props.wordpressClient.getCategories()
+      this.dispatchWrapper({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+    }
+    this.dispatchWrapper({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
     let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
+    this.dispatchWrapper({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
     this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
-    this.props.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
+  }
+
+  dispatchWrapper(action) {
+    this.props.dispatch(action)
   }
 
   findCategoryNameById(categoryId) {
@@ -51,22 +59,23 @@ class ArticleContainer extends Component {
   render() {
     if(this.props.articles.length === 0) {
       return (<Loading />)
-    } else return (
-      <div className="article-container">
-        {this.props.articles.map(article => (
-          <ArticleExcerpt
-            key={article.id}
-            id={article.id}
-            title={article.title.rendered}
-            excerpt={article.excerpt.rendered}
-            authorId={article.author}
-            categoryId={this.props.categoryId}
-          />
-        ))}
+    } else {
+      return (
+        <div className="article-container">
+          {this.props.articles.map(article => (
+            <ArticleExcerpt
+              key={article.id}
+              id={article.id}
+              title={article.title.rendered}
+              excerpt={article.excerpt.rendered}
+              authorId={article.author}
+              categoryId={this.props.categoryId}
+            />
+          ))}
 
-        <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
-      </div>
-    )
+          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
+        </div>
+    )}
   }
 }
 

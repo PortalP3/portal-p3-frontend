@@ -24,7 +24,8 @@ const CategoryReducer = (state = initialValues, action) => {
     case 'CATEGORY_RESET_ARTICLES':
       return {
         ...state,
-        articles: initialValues.articles
+        articles: initialValues.articles,
+        categoryId: initialValues.categoryId
       }
     default:
       return state
