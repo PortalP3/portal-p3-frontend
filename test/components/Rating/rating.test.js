@@ -1,6 +1,11 @@
 import React from 'react'
-import {mount} from 'enzyme'
+import {mount, shallow } from 'enzyme'
+import {Provider} from 'react-redux'
+import {createStore} from 'redux'
+
 import Rating from '../../../src/components/Rating/Rating'
+import reducers from '../../../redux/reducers/Reducers'
+
 
 const articleMeta = {
   rating: [1.6],
@@ -12,19 +17,25 @@ const wordpressClient = {
     return Promise.resolve({
       data: {
         rating: "2.4",
-        votes: 3
+        votes: 3,
+        error: ""
       }
     })
   }
 }
 
+const store = createStore(reducers)
+
 const wrapper = mount(
-  <Rating 
-    articleMeta={articleMeta}
-    articleId={1} 
-    wordpressClient={wordpressClient}
-  />
+  <Provider store={store}>
+    <Rating 
+      articleMeta={articleMeta}
+      articleId={1} 
+      wordpressClient={wordpressClient}
+    />
+  </Provider>
 )
+const rating = shallow(wrapper.find("Rating").get(0))
 
 test('render outer div for rating', () => {
   expect(wrapper.find('.rating')).toHaveLength(1)
@@ -40,8 +51,9 @@ test('has an initial state', () => {
     votes: 2
   }
   
-  expect(wrapper.state()).toEqual(expectedState)
+  expect(rating.state()).toEqual(expectedState)
 })
+
 
 test('state changes when sending vote', async () => {
   let vote = {
@@ -54,17 +66,20 @@ test('state changes when sending vote', async () => {
     votes: 3
   }
 
-  await wrapper.instance().sendVote(vote)
-  expect(wrapper.state()).toEqual(expectedState)
+  await rating.instance().sendVote(vote)
+  
+  expect(rating.state()).toEqual(expectedState)
 })
 
 test('render component when props are undefined', () => {
   let wrapper = mount(
-    <Rating
-      articleMeta={{}}
-      articleId={1} 
-      wordpressClient={wordpressClient}
-    />
+    <Provider store={store}>
+      <Rating
+        articleMeta={{}}
+        articleId={1} 
+        wordpressClient={wordpressClient}
+      />
+    </Provider>
   )
 
   expect(wrapper.find('.rating')).toHaveLength(1)
@@ -76,14 +91,14 @@ test('render component when receiving undefined props in componentWillReceivePro
     articleMeta: {}
   }
 
-  wrapper.setProps(newArticleProps)
+  rating.setProps(newArticleProps)
 
   let expectedState = {
     rating: 0,
     votes: 0
   }
 
-  expect(wrapper.state()).toEqual(expectedState)
+  expect(rating.state()).toEqual(expectedState)
 })
 
 test('change state when receiving new props', () => {
@@ -95,17 +110,17 @@ test('change state when receiving new props', () => {
     }
   }
 
-  wrapper.setProps(newArticleProps)
+  rating.setProps(newArticleProps)
 
   let expectedState = {
     rating: 1.0,
     votes: 1
   }
 
-  expect(wrapper.state()).toEqual(expectedState)
+  expect(rating.state()).toEqual(expectedState)
 })
 
 test('render feedback title', () => {
   let expectedTitle = '¿Qué te pareció el artículo?'
-  expect(wrapper.find('.rating').find('h3').text()).toEqual(expectedTitle)
+  expect(rating.find('.rating').find('h3').text()).toEqual(expectedTitle)
 })

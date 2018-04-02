@@ -70,6 +70,7 @@
     "react-bootstrap": "^0.31.0",
     "react-dom": "^16.0.0",
     "react-g-analytics": "^0.4.2",
+    "react-notification-system": "^0.2.17",
     "react-redux": "^5.0.6",
     "react-render-html": "^0.6.0",
     "react-router": "^4.1.2",
