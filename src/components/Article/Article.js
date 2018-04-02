@@ -3,6 +3,7 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import renderHTML from 'react-render-html'
 import {Link} from 'react-router-dom'
+import Notifications from '../Notifications/Notifications'
 
 import CategoryContainer from '../Category/CategoryContainer'
 import ArticleNavigation from './ArticleNavigation'
@@ -61,6 +62,8 @@ class Article extends Component {
             {renderHTML(this.props.content.content.rendered)}
 
             <Rating articleMeta={this.props.content.post_meta_fields} articleId={this.props.articleId} />
+
+            <Notifications />
 
           </div>
 

@@ -1,0 +1,2 @@
+export const NOTIFICATION_VOTED_ARTICLE_SUCCESS = { message: "Su votación fue registrada existosamente", level: "success" }
+export const NOTIFICATION_VOTED_ARTICLE_ERROR   = { message: "Usted ya votó por este artículo", level: "info" }
