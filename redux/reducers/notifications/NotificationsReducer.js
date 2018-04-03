@@ -1,4 +1,4 @@
-import { SHOW_NOTIFICATION } from '../../actions/actionTypes'
+import { SHOW_NOTIFICATION, HIDE_NOTIFICATION } from '../../actions/actionTypes'
 
 const initialValues = {
   visible: false,
@@ -15,6 +15,11 @@ const NotificationsReducer = (state = initialValues, action) => {
           visible: true,
           message: action.payload.message,
           level: action.payload.level
+      }
+      case HIDE_NOTIFICATION:
+      return {
+        ...state,
+          visible: false
       }
     default:
       return state

@@ -127,7 +127,7 @@ test('render feedback title', () => {
   expect(rating.find('.rating').find('h3').text()).toEqual(expectedTitle)
 })
 
-const getWrapper = (wordpressClient) => {
+const getWrapper = (wordpressClient, store) => {
   return mount(
     <Provider store={store}>
       <div className="article">
@@ -150,7 +150,8 @@ test('renders success notification when voting happens', (done) => {
     expect(message).toEqual(expectedValue)
     done()
   }
-  const wrapper = getWrapper(wordpressClient)
+  const store = createStore(reducers)
+  const wrapper = getWrapper(wordpressClient, store)
   const star = wrapper.find('Star').at(0);
   star.find('input').simulate('click')
   setTimeout(() => {
@@ -174,13 +175,13 @@ test('renders error notification when voting happens and the user already vote',
   function checkNotify(wrapper) {
     wrapper.update();
     const expectedValue = Messages.NOTIFICATION_VOTED_ARTICLE_ERROR.message
-    const message = wrapper.find(".notification-message").last().text()
+    const message = wrapper.find(".notification-message").text()
 
     expect(message).toEqual(expectedValue)
     done()
   }
-
-  const wrapper = getWrapper(wordpressClient)
+  const store = createStore(reducers)
+  const wrapper = getWrapper(wordpressClient, store)
   const star = wrapper.find('Star').at(0);
   star.find('input').simulate('click')
   setTimeout(() => {
