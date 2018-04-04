@@ -4,6 +4,7 @@ import PropTypes from 'prop-types'
 import renderHTML from 'react-render-html'
 import {Link} from 'react-router-dom'
 import Notifications from '../Notifications/Notifications'
+import PageNotFound from '../PageNotFound/PageNotFound'
 
 import CategoryContainer from '../Category/CategoryContainer'
 import ArticleNavigation from './ArticleNavigation'
@@ -16,6 +17,13 @@ import './article.scss'
 import '../Category/categoryContainer.scss'
 
 class Article extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      articleExists: true
+    }
+  }
 
   async componentWillMount(){
     if(this.props.categories.length === 0) {
@@ -32,10 +40,10 @@ class Article extends Component {
     this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
     if(this.articleExists(articles)){
       this.props.dispatch({type: 'ARTICLE_SET_CONTENT', payload: articles.data.filter(article => article.id === this.props.articleId)[0]})
-    }else{
-      window.location="/NotFound"
     }
-
+    this.setState({
+      articleExists: this.articleExists(articles)
+    })
   }
 
   articleExists(articles){
@@ -50,9 +58,11 @@ class Article extends Component {
   }
 
   render() {
-    if(Object.keys(this.props.content).length === 0 && this.props.content.constructor === Object) {
+    if(Object.keys(this.props.content).length === 0 && this.props.content.constructor === Object && this.state.articleExists) {
       return (<Loading />)
-    } else {
+    } else if(!this.state.articleExists){
+      return (<PageNotFound />)
+    }else {
       return (
         <div className="article-container">
           <div className="article">

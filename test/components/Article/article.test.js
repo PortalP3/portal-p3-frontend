@@ -190,7 +190,7 @@ test('renders an article when categories and articles are not loaded before', (d
     expect(wrapper.find('.article-container').find('.article').find('Rating')).toHaveLength(1)
     done()
   }
-  
+
   let store = createStore(reducers)
 
   let wrapper = mount(
@@ -203,5 +203,25 @@ test('renders an article when categories and articles are not loaded before', (d
 
   setTimeout(() => {
     todo(wrapper)
+  }, 0);
+})
+
+test('render PageNotFound when the article does not exists', (done) => {
+  function articleLoaded(wrapper) {
+    wrapper.update()
+    expect(wrapper.find('PageNotFound')).toHaveLength(1)
+    done()
+  }
+
+  store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: []})
+  wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Article categoryId={1} articleId={1000000} wordpressClient={wordpressClient} />
+      </MemoryRouter>
+    </Provider>
+  )
+  setTimeout(() => {
+    articleLoaded(wrapper)
   }, 0);
 })
