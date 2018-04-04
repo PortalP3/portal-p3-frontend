@@ -30,9 +30,17 @@ class Article extends Component {
     let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
     this.props.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
     this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
-    this.props.dispatch({type: 'ARTICLE_SET_CONTENT', payload: articles.data.filter(article => article.id === this.props.articleId)[0]})
+    if(this.articleExists(articles)){
+      this.props.dispatch({type: 'ARTICLE_SET_CONTENT', payload: articles.data.filter(article => article.id === this.props.articleId)[0]})
+    }else{
+      window.location="/NotFound"
+    }
+
   }
 
+  articleExists(articles){
+    return articles.data.filter(article => article.id === this.props.articleId).length !== 0
+  }
   findCategoryNameById(categories, categoryId) {
     return categories.filter(category => category.id === categoryId)[0].name
   }

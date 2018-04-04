@@ -42,14 +42,22 @@ class ArticleContainer extends Component {
       let categories = await this.props.wordpressClient.getCategories()
       this.dispatchWrapper({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
     }
-    this.dispatchWrapper({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
-    let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
-    this.dispatchWrapper({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
-    this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
+    if(this.categoryExists(categoryId)){
+      this.dispatchWrapper({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
+      let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
+      this.dispatchWrapper({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
+      this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
+    }else{
+      window.location = "/NotFound"
+    }
   }
 
   dispatchWrapper(action) {
     this.props.dispatch(action)
+  }
+
+  categoryExists(categoryId){
+    return this.props.categories.filter(category => category.id === categoryId).length!==0
   }
 
   findCategoryNameById(categoryId) {

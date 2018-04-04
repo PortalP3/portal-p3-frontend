@@ -5,6 +5,7 @@ import { BrowserRouter, Route, Redirect, Switch } from 'react-router-dom'
 import Home from '../Home/Home'
 import ArticleContainer from '../Article/ArticleContainer'
 import Article from '../Article/Article'
+import PageNotFound from '../PageNotFound/PageNotFound'
 
 import './main.scss'
 
@@ -20,8 +21,9 @@ const Main = () => (
       <Route
         exact
         path="/category/:categoryId?/article/:articleId?"
-        render={(props) => <Article categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />} 
+        render={(props) => <Article categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />}
       />
+      <Route component={PageNotFound} />
       <Route render={() => <Redirect to="/" />} />
     </Switch>
   </BrowserRouter>
