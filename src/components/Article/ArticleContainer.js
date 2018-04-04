@@ -7,11 +7,19 @@ import CategoryContainer from '../Category/CategoryContainer'
 import Loading from '../Loading/Loading'
 
 import WordpressClient from '../../clients/WordpressClient'
+import PageNotFound from '../PageNotFound/PageNotFound'
 
 import '../Category/categoryContainer.scss'
 import './articleContainer.scss'
 
 class ArticleContainer extends Component {
+
+  constructor(props) {
+    super(props)
+    this.state = {
+      categoryExists: true
+    }
+  }
 
   componentWillMount() {
     if(this.isDifferentCategory()) {
@@ -33,8 +41,7 @@ class ArticleContainer extends Component {
   }
 
   isDifferentCategory() {
-    if(this.props.currentCategory !== this.props.categoryId) return true
-    return false
+    return (this.props.currentCategory !== this.props.categoryId)
   }
 
   async loadCategory(categoryId) {
@@ -47,9 +54,12 @@ class ArticleContainer extends Component {
       let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
       this.dispatchWrapper({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
       this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
-    }else{
-      window.location = "/NotFound"
     }
+
+    this.setState({
+      categoryExists: this.categoryExists(categoryId)
+    })
+
   }
 
   dispatchWrapper(action) {
@@ -65,9 +75,12 @@ class ArticleContainer extends Component {
   }
 
   render() {
-    if(this.props.articles.length === 0) {
+    if(this.props.articles.length === 0 && this.state.categoryExists) {
       return (<Loading />)
-    } else {
+    } else if(!this.state.categoryExists){
+      console.log(this.state)
+      return (<PageNotFound />)
+    } else{
       return (
         <div className="article-container">
           {this.props.articles.map(article => (

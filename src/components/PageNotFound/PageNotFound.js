@@ -1,13 +1,9 @@
 import React from 'react'
-import PropTypes from 'prop-types'
 
-const PageNotFound =({ location }) =>{
+const PageNotFound =() => {
   return (
-    <h1>Page not found for location {location.pathname}</h1>
+    <h1>Page not found </h1>
   )
 }
 
-PageNotFound.propTypes = {
-  location: PropTypes.shape().isRequired
-}
 export default PageNotFound

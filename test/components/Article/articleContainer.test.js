@@ -92,9 +92,24 @@ test('render Loader when articles are not loaded', () => {
   expect(wrapper.find('Loading')).toHaveLength(1)
 })
 
+test('render PageNotFound when articles are not found', () => {
+  let store = createStore(reducers)
+  store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+
+  let wrapper = mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <ArticleContainer categoryId={1000000} wordpressClient={wordpressClient} />
+      </MemoryRouter>
+    </Provider>
+  )
+
+  expect(wrapper.find('PageNotFound')).toHaveLength(1)
+})
+
 test('render outer div for articles', () => {
   wrapper.update()
-  
+
   expect(wrapper.find('.article-container')).toHaveLength(1)
 })
 
@@ -113,7 +128,7 @@ test('render articles when categories are not loaded before', (done) => {
     assertCategoryContainer(wrapper, 0, '1', 1, 'title1', 'excerpt1', 1)
     done()
   }
-  
+
   let store = createStore(reducers)
 
   let wrapper = mount(
