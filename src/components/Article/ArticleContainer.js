@@ -78,7 +78,6 @@ class ArticleContainer extends Component {
     if(this.props.articles.length === 0 && this.state.categoryExists) {
       return (<Loading />)
     } else if(!this.state.categoryExists){
-      console.log(this.state)
       return (<PageNotFound />)
     } else{
       return (
