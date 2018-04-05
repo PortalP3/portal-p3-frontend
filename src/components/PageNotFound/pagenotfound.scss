@@ -1,0 +1,20 @@
+@import "src/utilities/_variables";
+
+.pagenotfound-container {
+  background: $body_background;
+  width: $container_width;
+  margin: 0 auto;
+
+  .pagenotfound {
+    background: $gray;
+    padding: 5px 20px 40px;
+    margin: 20px 0;
+    text-align: center;
+
+    h1 {
+      font-size: 40px;
+      color: $purple;
+      margin-bottom: 20px;
+    }
+  }
+}
