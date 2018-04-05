@@ -22,7 +22,7 @@ class PageNotFound extends Component {
         <div className="pagenotfound">
 
           <h1>Contenido no encontrado</h1>
-          {renderHTML('La información solicitada ya no se encuentra disponible')}
+          {renderHTML('La información solicitada no se encuentra disponible')}
 
         </div>
 

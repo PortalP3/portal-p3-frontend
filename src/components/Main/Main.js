@@ -24,7 +24,6 @@ const Main = () => (
         render={(props) => <Article categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />}
       />
       <Route component={PageNotFound} />
-      <Route render={() => <Redirect to="/" />} />
     </Switch>
   </BrowserRouter>
 )
