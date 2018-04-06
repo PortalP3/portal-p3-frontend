@@ -5,6 +5,7 @@ import {createStore} from 'redux'
 import {MemoryRouter} from 'react-router-dom'
 
 import ArticleContainer from '../../../src/components/Article/ArticleContainer'
+import Header from '../../../src/components/Header/Header'
 import reducers from '../../../redux/reducers/Reducers'
 
 const categories = {
@@ -143,6 +144,32 @@ test('render articles when categories are not loaded before', (done) => {
     todo(wrapper)
   }, 0);
 })
+
+test(' after article container is loaded, updates the header content setting a background picture', (done) => {
+  
+  function finishUpdate(){
+    wrapper.update()
+    const wrapperProps      = wrapper.find('Header').find('header').props()
+    expect(wrapperProps['style'].backgroundImage).toEqual(newBackgroundUrl)
+    done()
+  }
+  const newBackgroundUrl  = 'url('+categories.data[0].acf.image.url+')'
+  
+  const wrapper = mount(
+    <Provider store={createStore(reducers)}>
+      <MemoryRouter>
+        <div>
+          <Header />
+          <ArticleContainer categoryId={categories.data[0].id} wordpressClient={wordpressClient} />
+        </div>
+      </MemoryRouter>
+    </Provider>)
+  
+  setTimeout(() => {
+    finishUpdate(wrapper)
+  }, 0);
+})
+
 
 const assertCategoryContainer = (wrapper, index, key, id, title, excerpt, authorId) => {
   expect(wrapper.find('Connect(ArticleExcerpt)').at(index).key()).toEqual(key)

@@ -5,6 +5,7 @@ import PropTypes from 'prop-types'
 import ArticleExcerpt from './ArticleExcerpt'
 import CategoryContainer from '../Category/CategoryContainer'
 import Loading from '../Loading/Loading'
+import { HEADER_SET_BACKGROUND } from '../../../redux/actions/actionTypes'
 
 import WordpressClient from '../../clients/WordpressClient'
 import PageNotFound from '../PageNotFound/PageNotFound'
@@ -51,6 +52,7 @@ class ArticleContainer extends Component {
     }
     if(this.categoryExists(categoryId)){
       this.dispatchWrapper({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
+      this.dispatchWrapper({type: HEADER_SET_BACKGROUND, payload: this.findCategoryById(categoryId).acf.image.url})
       let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
       this.dispatchWrapper({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
       this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
@@ -67,11 +69,19 @@ class ArticleContainer extends Component {
   }
 
   categoryExists(categoryId){
-    return this.props.categories.filter(category => category.id === categoryId).length!==0
+    return this.filterCategoryById(categoryId).length!==0
   }
 
   findCategoryNameById(categoryId) {
-    return this.props.categories.filter(category => category.id === categoryId)[0].name
+    return this.findCategoryById(categoryId).name
+  }
+
+  filterCategoryById(categoryId){
+    return this.props.categories.filter(category => category.id === categoryId)
+  }
+
+  findCategoryById(categoryId){
+    return this.filterCategoryById(categoryId)[0]
   }
 
   render() {
