@@ -11,6 +11,7 @@ import ArticleNavigation from './ArticleNavigation'
 import Rating from '../Rating/Rating'
 import WordpressClient from '../../clients/WordpressClient'
 import Loading from '../Loading/Loading'
+import { HEADER_SET_BACKGROUND } from '../../../redux/actions/actionTypes'
 
 import './articleContainer.scss'
 import './article.scss'
@@ -35,6 +36,7 @@ class Article extends Component {
     let categories = await this.props.wordpressClient.getCategories()
     this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
     this.props.dispatch({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categories.data, categoryId)})
+    this.props.dispatch({type: HEADER_SET_BACKGROUND, payload: this.findCategoryById(categories.data, categoryId).acf.image.url})
     let articles = await this.props.wordpressClient.getArticlesByCategory(categoryId)
     this.props.dispatch({type: 'CATEGORY_SET_ARTICLES', payload: articles.data})
     this.props.dispatch({type: 'CATEGORY_SET_CURRENT_ID', payload: categoryId})
@@ -49,8 +51,13 @@ class Article extends Component {
   articleExists(articles){
     return articles.data.filter(article => article.id === this.props.articleId).length !== 0
   }
+
+  findCategoryById(categories, categoryId){
+    return categories.filter(category => category.id === categoryId)[0]
+  }
+
   findCategoryNameById(categories, categoryId) {
-    return categories.filter(category => category.id === categoryId)[0].name
+    return this.findCategoryById(categories, categoryId).name
   }
 
   capitalizeString(str) {
