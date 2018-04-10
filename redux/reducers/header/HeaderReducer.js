@@ -1,5 +1,5 @@
 import { HEADER_SET_BACKGROUND, HEADER_SET_TITLE, HEADER_RESET_TITLE } from '../../actions/actionTypes'
-import HEADER_BACKGROUND_URL from '../../../src/config/constants'
+import { HEADER_BACKGROUND_URL } from '../../../src/config/constants'
 
 const initialValues = {
   title: 'AMAWTA',
