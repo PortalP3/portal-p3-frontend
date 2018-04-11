@@ -5,7 +5,7 @@ import {createStore} from 'redux'
 
 import Header from '../../../src/components/Header/Header'
 import reducers from '../../../redux/reducers/Reducers'
-import HEADER_BACKGROUND_URL from '../../../src/config/constants'
+import { HEADER_BACKGROUND_URL } from '../../../src/config/constants'
 
 const wrapper = mount(<Provider store={createStore(reducers)}><Header /></Provider>)
 
