@@ -18,5 +18,5 @@ test('render Footer', () => {
 })
 
 test('render navigation bar', () => {
-  expect(wrapper.find('NavigationBar')).toHaveLength(1)
+  expect(wrapper.find('Connect(NavigationBar)')).toHaveLength(1)
 })

@@ -1,7 +1,11 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import { MenuItem, Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { connect } from 'react-redux'
 import { APP_NAME } from '../../config/constants'
+
+import './navigationBar.scss'
+
 
 class NavigationBar extends Component {
 
@@ -10,10 +14,10 @@ class NavigationBar extends Component {
   }
   
   displayItems() {
-    return this.props.categories.data.map( 
+    return this.props.categories.map( 
       (category) => {
       return (
-        <MenuItem key={category.id} href={`category/${category.id}`}>{category.name}</MenuItem>
+        <MenuItem key={category.id} href={`/category/${category.id}`}>{category.name}</MenuItem>
       )
     })
   }
@@ -23,6 +27,8 @@ class NavigationBar extends Component {
       <Navbar>
         <Nav>
           <NavDropdown title={APP_NAME} id="0">
+            <MenuItem  href="/">INICIO</MenuItem>
+            <MenuItem divider />
             {this.displayItems()}
           </NavDropdown>
         </Nav>
@@ -32,7 +38,9 @@ class NavigationBar extends Component {
 }
 
 NavigationBar.propTypes = {
-  categories: PropTypes.shape().isRequired
+  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired
 }
 
-export default NavigationBar
+export default connect(store => ({
+  categories: store.category.categories
+}))(NavigationBar)

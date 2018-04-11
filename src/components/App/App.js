@@ -13,7 +13,7 @@ const App = () => {
       <Header />
       <Main />
       <Footer />
-      <NavigationBar categories={{}} />
+      <NavigationBar />
     </div>
   )
 }

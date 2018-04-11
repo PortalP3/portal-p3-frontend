@@ -1,0 +1,59 @@
+@import "src/utilities/_variables";
+
+.navbar {
+  position: fixed;
+  background: $dark_gray;
+  top: 0;
+  right: 0;
+  width: 100%;
+  border: none;
+
+  .navbar-nav {
+    float: right;
+
+    span.caret {
+      display: none;
+    }
+
+    .dropdown a {
+      color: white;
+    }
+
+    .dropdown a:hover {
+      color: $orange;
+    }
+
+    .dropdown.open a {
+      background-color: $dark_gray;
+      color: white;
+    }
+
+    .dropdown-menu {
+      background-color: $dark_gray;
+
+      a:hover {
+        color: $orange;
+      }
+
+      .divider {
+        height: 1px;
+        margin: 1px 0;
+        overflow: hidden;
+        background-color: $orange;
+      }
+    }
+  }
+
+  a {
+    color: $white;
+    padding: $space_thin $space_extra_medium;
+    line-height: $space_extra_fat;
+    text-decoration: none;
+    text-transform: uppercase;
+    font-weight: $font_bold;
+  }
+
+  a:hover {
+    color: $orange;
+  }
+}
