@@ -1,11 +1,13 @@
 @import "src/utilities/_variables";
 
-.pagenotfound-container {
+.pagenotfound-container,
+.internalerror-container {
   background: $body_background;
   width: $container_width;
   margin: 0 auto;
 
-  .pagenotfound {
+  .pagenotfound,
+  .internalerror {
     background: $gray;
     padding: 5px 20px 40px;
     margin: 20px 0;
