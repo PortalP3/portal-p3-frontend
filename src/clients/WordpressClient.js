@@ -14,11 +14,11 @@ export default class WordpressClient {
   }
 
   getArticlesByCategory(category) {
-    return axios.get(`${urlBackend}/posts?categories=${category}`).catch((error)=>{ return {data: [], errorMessage: error}})
+    return instance.get(`/posts?categories=${category}`).catch((error)=>{ return {data: [], errorMessage: error}})
   }
 
   getAuthorInfo(author) {
-    return axios.get(`${urlBackend}/users?id=${author}`).catch((error)=>{ return {data: [], errorMessage: error}})
+    return instance.get(`/users?id=${author}`).catch((error)=>{ return {data: [], errorMessage: error}})
   }
 
   getNonce() {

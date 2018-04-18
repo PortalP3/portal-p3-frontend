@@ -15,20 +15,24 @@ class Main  extends Component {
   constructor(props){
     super(props)
     this.state = {
-      showError: false
+      showError: false,
+      title: '',
+      message: ''
     }
     this.handleError = this.handleError.bind(this)
   }
 
-  handleError(_state){
+  handleError(_state, title, message){
     this.setState({
-      showError: _state
+      showError: _state,
+      title: title,
+      message: message
     })
   }
 
   render(){
     if(this.state.showError){
-      return(<InternalError />)
+      return(<InternalError title={this.state.title} message={this.state.message} />)
     }else{
       return(<BrowserRouter>
         <Switch>
@@ -36,12 +40,12 @@ class Main  extends Component {
           <Route
             exact
             path="/category/:categoryId?"
-            render={(props) => <ArticleContainer categoryId={parseInt(props.match.params.categoryId)} />}
+            render={(props) => <ArticleContainer onError={this.handleError} categoryId={parseInt(props.match.params.categoryId)} />}
           />
           <Route
             exact
             path="/category/:categoryId?/article/:articleId?"
-            render={(props) => <Article categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />}
+            render={(props) => <Article onError={this.handleError} categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />}
           />
           <Route component={PageNotFound} />
         </Switch>

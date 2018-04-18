@@ -48,7 +48,13 @@ class ArticleContainer extends Component {
   async loadCategory(categoryId) {
     if(this.props.categories.length === 0) {
       let categories = await this.props.wordpressClient.getCategories()
-      this.dispatchWrapper({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+      if (categories.errorMessage) {
+        this.updateMainComponentState(true, "Error", categories.errorMessage)
+        return
+      }else{
+        this.dispatchWrapper({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+      }
+      
     }
     if(this.categoryExists(categoryId)){
       this.dispatchWrapper({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categoryId)})
@@ -82,6 +88,10 @@ class ArticleContainer extends Component {
 
   findCategoryById(categoryId){
     return this.filterCategoryById(categoryId)[0]
+  }
+
+  updateMainComponentState(_state, title, message) {
+    this.props.onError(_state, title, message)
   }
 
   render() {
@@ -119,7 +129,8 @@ ArticleContainer.propTypes = {
   dispatch: PropTypes.func.isRequired,
   articles: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
-  currentCategory: PropTypes.number.isRequired
+  currentCategory: PropTypes.number.isRequired,
+  onError: PropTypes.func.isRequired
 }
 
 export default connect(store => ({
