@@ -50,7 +50,7 @@ beforeEach(() => {
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <Home wordpressClient={wordpressClient} />
+        <Home wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
@@ -72,7 +72,7 @@ test('render loader when categories are not loaded', () => {
   let wrapper = mount(
     <Provider store={createStore(reducers)}>
       <MemoryRouter>
-        <Home wordpressClient={wordpressClient} />
+        <Home wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
