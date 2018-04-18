@@ -2,6 +2,7 @@ import React from 'react'
 import { mount } from 'enzyme'
 import { Provider } from 'react-redux'
 import { createStore } from 'redux';
+import { MemoryRouter } from 'react-router-dom'
 import reducers from '../../redux/reducers/Reducers' 
 import Home from '../../src/components/Home/Home'
 import ArticleContainer from '../../src/components/Article/ArticleContainer'
@@ -53,71 +54,113 @@ const articles = {
   ]
 }
 
-const store = createStore(reducers)
-
 const error = {
-  data: [], errorMessage: "Network error"
+  data: [], errorMessage: {message: "Network error"}
 }
 
-const wordpressClient = {
-  getCategories: () => {
-    return Promise.resolve(error)
+test("home component handles error response", ()=>{
+
+  const store = createStore(reducers)
+
+  const wordpressClient = {
+    getCategories: () => {
+      return Promise.resolve(error)
+    }
   }
-}
 
-
-
-test("home component handles error response", (done)=>{
-
-  let errorIsSet = false
-  function testExpect() {      
-    expect(errorIsSet).toBeTruthy()
-    done()
-  }
   function errorCallBack(state, title, message) {
-    errorIsSet = state
-    testExpect(); 
+    expect(state).toBeTruthy()
+    expect(title).toEqual("Error")
+    expect(message).toEqual("Network error")
   }
 
   mount(
     <Provider store={store}>
-      <Home onError={errorCallBack} wordpressClient={wordpressClient} />
+      <MemoryRouter>
+        <Home onError={errorCallBack} wordpressClient={wordpressClient} />
+      </MemoryRouter>
     </Provider>) 
 })
 
 
-test("makes request to api and shows error(calling from article container component)", (done)=>{
+test("makes request to api and shows error(calling from article container component)", ()=>{
 
-  store.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
-  let errorIsSet = false
-  function testExpect() {      
-    expect(errorIsSet).toBeTruthy()
-    done()
+  const store = createStore(reducers)
+
+  const wordpressClient = {
+    getCategories: () => {
+      return Promise.resolve({data: [], errorMessage: {message: "Network error"}})
+    } 
   }
+
   function errorCallBack(state, title, message) {
-    errorIsSet = state
-    testExpect(); 
+    expect(state).toBeTruthy()
+    expect(title).toEqual("Error")
+    expect(message).toEqual("Network error")
   }
 
   mount(
     <Provider store={store}>
-      <ArticleContainer categoryId={1} onError={errorCallBack} wordpressClient={wordpressClient} />
+      <MemoryRouter>
+        <ArticleContainer categoryId={1} onError={errorCallBack} wordpressClient={wordpressClient} currentCategory={1} />
+      </MemoryRouter>
     </Provider>) 
 })
-/*
+
 test("makes request to api and shows error(calling from article component)", ()=>{
-  let errorIsSet = false
-  function testExpect() {      
-    expect(errorIsSet).toBeTruthy()
-    done()
+
+  const store = createStore(reducers)
+
+  const wordpressClient = {
+    getCategories: () => {
+      return Promise.resolve({data: [], errorMessage: "Network error"})
+    },
+    getArticlesByCategory: (category) => {
+      return Promise.resolve({data: [], errorMessage: "Network error"})
+    } 
+
   }
+
   function errorCallBack(state, title, message) {
-    errorIsSet = state
-    testExpect(); 
+    expect(state).toBeTruthy()
+    expect(title).toEqual("Error")
+    expect(message).toEqual("Network error")
   }
 
   mount(
     <Provider store={store}>
-      <Article onError={errorCallBack} wordpressClient={wordpressClient} />
+      <MemoryRouter>
+        <Article onError={errorCallBack} wordpressClient={wordpressClient} categoryId={1} articleId={1} />
+      </MemoryRouter>
     </Provider>) 
-})*/
+
+})
+
+test("makes request to api for articles and shows error(calling from article component)", ()=>{
+
+  const store = createStore(reducers)
+
+  const wordpressClient = {
+    getCategories: () => {
+      return Promise.resolve(categories)
+    },
+    getArticlesByCategory: (category) => {
+      return Promise.resolve({data: [], errorMessage: "Network error"})
+    } 
+
+  }
+
+  function errorCallBack(state, title, message) {
+    expect(state).toBeTruthy()
+    expect(title).toEqual("Error")
+    expect(message).toEqual("Network error")
+  }
+
+  mount(
+    <Provider store={store}>
+      <MemoryRouter>
+        <Article onError={errorCallBack} wordpressClient={wordpressClient} categoryId={1} articleId={1} />
+      </MemoryRouter>
+    </Provider>) 
+
+})

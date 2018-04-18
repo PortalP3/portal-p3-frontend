@@ -22,5 +22,5 @@ test('has internalerror class name', () => {
 
 test('makes use of the props', () => {
   expect(wrapper.find('h1').first().text()).toEqual(title)
-  expect(wrapper.find('p').first().text()).toEqual(message)
+  expect(wrapper.find('p').first().text()).toEqual(`Por favor intente más tarde (${message})`)
 })
