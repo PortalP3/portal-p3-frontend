@@ -72,7 +72,7 @@ beforeEach(async () => {
   wrapper = await mount(
     <Provider store={store}>
       <MemoryRouter>
-        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
+        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
@@ -85,7 +85,7 @@ test('render Loader when articles are not loaded', () => {
   let wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
+        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
@@ -100,7 +100,7 @@ test('render PageNotFound when articles are not found', () => {
   let wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <ArticleContainer categoryId={1000000} wordpressClient={wordpressClient} />
+        <ArticleContainer categoryId={1000000} wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
@@ -135,7 +135,7 @@ test('render articles when categories are not loaded before', (done) => {
   let wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} />
+        <ArticleContainer categoryId={1} wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
@@ -160,7 +160,7 @@ test(' after article container is loaded, updates the header content setting a b
       <MemoryRouter>
         <div>
           <Header />
-          <ArticleContainer categoryId={categories.data[0].id} wordpressClient={wordpressClient} />
+          <ArticleContainer categoryId={categories.data[0].id} wordpressClient={wordpressClient} onError={() => {}} />
         </div>
       </MemoryRouter>
     </Provider>)

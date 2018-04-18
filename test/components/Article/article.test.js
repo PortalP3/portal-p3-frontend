@@ -139,7 +139,7 @@ beforeEach(() => {
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <Article categoryId={1} articleId={10} />
+        <Article categoryId={1} articleId={10} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
@@ -196,7 +196,7 @@ test('renders an article when categories and articles are not loaded before', (d
   let wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <Article categoryId={1} articleId={1} wordpressClient={wordpressClient} />
+        <Article categoryId={1} articleId={1} wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
@@ -217,7 +217,7 @@ test('render PageNotFound when the article does not exists', (done) => {
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <Article categoryId={1} articleId={1000000} wordpressClient={wordpressClient} />
+        <Article categoryId={1} articleId={1000000} wordpressClient={wordpressClient} onError={() => {}} />
       </MemoryRouter>
     </Provider>
   )
