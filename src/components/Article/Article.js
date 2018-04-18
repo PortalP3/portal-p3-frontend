@@ -35,7 +35,7 @@ class Article extends Component {
   async loadCategory(categoryId) {
     let categories = await this.props.wordpressClient.getCategories()
     if (categories.errorMessage) {
-      this.updateMainComponentState(true, "Error", categories.errorMessage)
+      this.updateMainComponentState(true, "Error", categories.errorMessage.message)
       return
     }
     this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})

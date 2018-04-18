@@ -17,7 +17,7 @@ class InternalError extends Component {
       <div className="internalerror-container">
         <div className="internalerror">
           <h1>{this.props.title}</h1>
-          <p>{renderHTML(this.props.message)}</p>
+          <p>Por favor intente más tarde ({renderHTML(this.props.message)})</p>
         </div>
       </div>
     )

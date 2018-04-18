@@ -49,7 +49,7 @@ class ArticleContainer extends Component {
     if(this.props.categories.length === 0) {
       let categories = await this.props.wordpressClient.getCategories()
       if (categories.errorMessage) {
-        this.updateMainComponentState(true, "Error", categories.errorMessage)
+        this.updateMainComponentState(true, "Error", categories.errorMessage.message)
         return
       }else{
         this.dispatchWrapper({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
