@@ -1,6 +1,7 @@
 import React from 'react'
 import {shallow} from 'enzyme'
-
+import {createStore} from 'redux'
+import reducers from '../../../redux/reducers/Reducers'
 import Main from '../../../src/components/Main/Main'
 import PageNotFound from '../../../src/components/PageNotFound/PageNotFound';
 
@@ -34,4 +35,23 @@ test('renders route for PageNotFound', () => {
   const wrapper = shallow(<Main />)
   expect(wrapper.find('BrowserRouter').find('Route').at(3).props().component).toBeDefined()
   expect(wrapper.find('BrowserRouter').find('Route').at(3).props().component).toEqual(PageNotFound)
+})
+
+
+test('renders InternalError when state is changed', () => {
+  const store   = createStore(reducers)
+  const wrapper = shallow(<Main store={store} />)
+
+  expect(wrapper.find('PageNotFound')).toBeDefined()
+  const spy = jest.spyOn(Main.prototype, 'render');
+
+  wrapper.setState({
+    showError: true,
+    title: "title",
+    message: "message"
+  }, ()=>{
+    expect(wrapper.state('showError')).toBeTruthy()
+    expect(spy).toHaveBeenCalled();
+  })
+  
 })

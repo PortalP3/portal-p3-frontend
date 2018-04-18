@@ -34,6 +34,10 @@ class Article extends Component {
 
   async loadCategory(categoryId) {
     let categories = await this.props.wordpressClient.getCategories()
+    if (categories.errorMessage) {
+      this.updateMainComponentState(true, "Error", categories.errorMessage)
+      return
+    }
     this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
     this.props.dispatch({type: 'HEADER_SET_TITLE', payload: this.findCategoryNameById(categories.data, categoryId)})
     this.props.dispatch({type: HEADER_SET_BACKGROUND, payload: this.findCategoryById(categories.data, categoryId).acf.image.url})
@@ -62,6 +66,10 @@ class Article extends Component {
 
   capitalizeString(str) {
     return str ? str[0].toUpperCase() + str.substr(1).toLowerCase() : ''
+  }
+
+  updateMainComponentState(_state, title, message) {
+    this.props.onError(_state, title, message)
   }
 
   render() {
@@ -113,6 +121,7 @@ Article.propTypes = {
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
   wordpressClient: PropTypes.shape(),
   dispatch: PropTypes.func.isRequired,
+  onError: PropTypes.func.isRequired,
   headerTitle: PropTypes.string.isRequired
 }
 

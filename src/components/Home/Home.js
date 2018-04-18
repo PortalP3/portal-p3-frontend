@@ -24,7 +24,7 @@ class Home extends Component {
     if(this.props.categories.length === 0) {
       let categories = await this.props.wordpressClient.getCategories()
       if (categories.errorMessage) {
-        this.updateMainComponentState(categories.errorMessage)
+        this.updateMainComponentState(true, "Error", categories.errorMessage)
       } else {
         this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
       }
@@ -37,14 +37,11 @@ class Home extends Component {
     } else return <CategoryContainer title="TEMÁTICAS" />
   }
 
-  updateMainComponentState(_state) {
-    this.props.onError(_state)
+  updateMainComponentState(_state, title, message) {
+    this.props.onError(_state, title, message)
   }
 
-
   render() {
-    console.log("props**********************************************", this.props)
-    this.updateMainComponentState(true)
     return (
       <div className="home">
         {this.getContent()}
