@@ -1,6 +1,7 @@
 import React, { Component } from 'react'
 //import PropTypes from 'prop-types'
-import { BrowserRouter, Route, Switch } from 'react-router-dom'
+import {Route, Switch } from 'react-router-dom'
+import {BrowserRouter} from 'react-g-analytics'
 
 import Home from '../Home/Home'
 import ArticleContainer from '../Article/ArticleContainer'
@@ -34,7 +35,7 @@ class Main  extends Component {
     if(this.state.showError){
       return(<InternalError title={this.state.title} message={this.state.message} />)
     }else{
-      return(<BrowserRouter>
+      return(<BrowserRouter id={process.env.TRACKING_ID}>
         <Switch>
           <Route exact path="/" render={() => <Home onError={this.handleError} />} />
           <Route
