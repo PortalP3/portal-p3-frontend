@@ -6,6 +6,7 @@ import CategoryContainer from '../Category/CategoryContainer'
 import Loading from '../Loading/Loading'
 
 import WordpressClient from '../../clients/WordpressClient'
+import Search from '../Header/Search'
 
 import './home.scss'
 import '../Loading/loading.scss'
@@ -43,9 +44,12 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home">
-        {this.getContent()}
-      </div>
+        <div className="home-container">
+          <Search />
+          <div className="home">
+            {this.getContent()}
+          </div>
+        </div>
     )
   }
 

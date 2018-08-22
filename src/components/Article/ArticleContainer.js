@@ -101,7 +101,7 @@ class ArticleContainer extends Component {
       return (<PageNotFound />)
     } else{
       return (
-        <div className="article-container">
+        <div className="article-container container">
           {this.props.articles.map(article => (
             <ArticleExcerpt
               key={article.id}

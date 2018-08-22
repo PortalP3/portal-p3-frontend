@@ -5,10 +5,12 @@ import reducers from '../../../redux/reducers/Reducers'
 import Main from '../../../src/components/Main/Main'
 import PageNotFound from '../../../src/components/PageNotFound/PageNotFound';
 
+global.process.env.TRACKING_ID = 'aaaaaa'
+
 test('render BrowserRouter', () => {
   const wrapper = shallow(<Main />)
 
-  console.log('id', wrapper.props());
+  console.log(wrapper.debug());
 
   expect(wrapper.find('GABrowserRouter')).toHaveLength(1)
 })

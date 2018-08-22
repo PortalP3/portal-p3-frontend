@@ -1,0 +1,31 @@
+@import "src/utilities/_variables";
+
+.search-info-select{
+
+    .options-container {
+        height: 120px;
+        overflow:  scroll;
+    }
+
+    .arrow-up {
+        position: relative;
+        border-left: 15px solid transparent;
+        border-right: 15px solid transparent;
+        border-top: 15px solid #F7E31B;
+        top: 25px;
+        float: right;
+        margin-right: 20px;
+      }
+
+    .category-option{
+        width: 60%;
+        margin: 0 auto;
+        display: block;
+        text-align: center;
+        background-color: #000;
+        color: #F7E31B;
+        font-size: 3em;
+        font-weight: bold;
+        border-top: 1px solid #F7E31B;
+    }
+}

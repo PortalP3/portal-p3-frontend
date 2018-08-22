@@ -1,6 +1,7 @@
 import React from 'react'
 
 import Header from '../Header/Header'
+import Search from '../Header/Search'
 import Main from '../Main/Main'
 import Footer from '../Footer/Footer'
 import NavigationBar from '../NavigationBar/NavigationBar'

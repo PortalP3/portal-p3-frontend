@@ -1,33 +1,59 @@
-import React from 'react'
+import React, {Component} from 'react'
 import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Category from './Category'
+import WordpressClient from '../../clients/WordpressClient'
+
 
 import './categoryContainer.scss'
 
-const CategoryContainer = (props) => (
-  <div className="category-container">
-    <div className="container-title">
-      <h1>{props.title}</h1>
-    </div>
-    <div className="container-content">
-      {props.categories.filter(category => (
-        category.id !== props.selectedCategoryId
-      )).map(category => (
-        <Category key={category.id} id={category.id} name={category.name} image={category.acf.image.url} />
-      ))}
-    </div>
-  </div>
-)
+class CategoryContainer extends Component {
+
+  constructor(props){
+    super(props);
+  }
+
+
+  async componentDidMount() {
+    if(this.props.categories.length === 0) {
+      let categories = await this.props.wordpressClient.getCategories()
+      if (categories.errorMessage) {
+        this.updateMainComponentState(true, "Error", categories.errorMessage.message)
+      } else {
+        this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
+      }
+    }
+  }
+
+  render() {
+    return(
+      <div className="category-container">
+        <div className="container-title">
+          <h1>{this.props.title}</h1>
+        </div>
+        <div className="container-content">
+          {this.props.categories.filter(category => (
+            category.id !== this.props.selectedCategoryId
+          )).map(category => (
+            <Category key={category.id} id={category.id} name={category.name} image={category.acf.image.url} />
+          ))}
+        </div>
+      </div>
+    )
+  }
+}
 
 CategoryContainer.defaultProps = {
-  selectedCategoryId: null
+  selectedCategoryId: null,
+  wordpressClient: new WordpressClient()
+
 }
 
 CategoryContainer.propTypes = {
   title: PropTypes.string.isRequired,
   selectedCategoryId: PropTypes.number,
+  wordpressClient: PropTypes.shape(),
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired
 }
 

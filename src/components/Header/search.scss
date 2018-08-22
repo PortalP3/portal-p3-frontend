@@ -1,0 +1,109 @@
+@import "src/utilities/_variables";
+
+.search {
+    background-color: $search_container;
+
+    .search-info-container {
+        width: 100%;
+        padding: 80px 100px 20px 80px;
+
+        .search-info-title {
+            font-size: 64px;
+            font-weight: bolder;
+            text-align: center;
+            color: #000;
+
+            input {
+                font-size: 42px;
+                border: 0;
+                border-bottom: 2px solid #000;
+                border-style: dashed;
+                background: transparent;
+                font-style: italic;
+                margin: 0 20px;
+                text-align: center;
+                padding: 0 20px 10px 20px;
+            }
+
+            input:focus {
+                outline: 0;
+            }
+
+            input::placeholder {
+                font-size: 24px;
+                font-weight: normal;
+                color: #000;
+            }
+        }
+
+        .search-info-subtitle {
+            text-align: center;
+            margin-top: 0;
+            margin-right: 120px;
+            color: #000;
+            font-weight: bolder;
+        }
+
+        .search-select-label {
+            text-align: center;
+            color: #000;
+            font-style: italic;
+            font-weight: normal;
+            font-size: 24px;
+        }
+
+        .search-info-select {
+
+
+            select {
+                display: none;
+                margin: 0 auto;
+            }
+
+            .select-selected {
+                background-color: #000000;
+            }
+
+            .select-selected:after {
+                position: absolute;
+                content: "";
+                top: 14px;
+                right: 10px;
+                width: 0;
+                height: 0;
+                border: 6px solid transparent;
+                border-color: #fff transparent transparent transparent;
+            }
+
+            .select-selected.select-arrow-active:after {
+                border-color: transparent transparent #fff transparent;
+                top: 7px;
+            }
+
+            .select-items div,.select-selected {
+                color: #F7E31B;
+                padding: 8px 16px;
+                border: 1px solid transparent;
+                border-color: transparent transparent rgba(0, 0, 0, 0.1) transparent;
+                cursor: pointer;
+            }
+
+            .select-items {
+                position: absolute;
+                background-color: #000000;
+                top: 100%;
+                left: 0;
+                right: 0;
+                z-index: 99;
+            }
+
+            .select-hide {
+                display: none;
+            }
+              .select-items div:hover, .same-as-selected {
+                background-color: rgba(0, 0, 0, 0.1);
+            }
+        }
+        
+    }
+}
