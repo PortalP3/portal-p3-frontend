@@ -28,7 +28,7 @@ class CategoryContainer extends Component {
 
   render() {
     return(
-      <div className="category-container">
+      <div className="category-container col-md-12">
         <div className="container-title">
           <h1>{this.props.title}</h1>
         </div>

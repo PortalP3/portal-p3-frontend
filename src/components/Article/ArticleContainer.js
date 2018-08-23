@@ -109,6 +109,8 @@ class ArticleContainer extends Component {
               title={article.title.rendered}
               excerpt={article.excerpt.rendered}
               authorId={article.author}
+              date={article.date}
+              authorName={article.author_name}
               categoryId={this.props.categoryId}
             />
           ))}

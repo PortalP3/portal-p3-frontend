@@ -1,9 +1,10 @@
 @import "src/utilities/_variables";
 
 .article-container {
-  background: $body_background;
+  //background: $body_background;
  /* width: $container_width;*/
   margin: 0 auto;
+  width: 80%;
 }
 
 a {
