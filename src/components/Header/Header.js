@@ -10,7 +10,7 @@ const Header = (props) => {
     <header>
       <div className="logo-portal-info-container">
         <div className="logo-portal-image">
-          <img src={props.questions_background}></img>
+          <img alt="" src={props.questions_background} />
         </div>
         <div className="logo-portal">
           <h1>{props.question1}</h1>
@@ -25,9 +25,9 @@ const Header = (props) => {
 
 
 Header.propTypes = {
-  title: PropTypes.string.isRequired,
-  description: PropTypes.string.isRequired,
-  background: PropTypes.string.isRequired,
+  //title: PropTypes.string.isRequired,
+  //description: PropTypes.string.isRequired,
+  //background: PropTypes.string.isRequired,
   questions_background: PropTypes.string.isRequired,
   question1: PropTypes.string.isRequired,
   response1: PropTypes.string.isRequired,

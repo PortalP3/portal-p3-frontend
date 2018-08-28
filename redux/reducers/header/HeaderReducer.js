@@ -13,7 +13,6 @@ const initialValues = {
 }
 
 const HeaderReducer = (state = initialValues, action) => {
-  console.log('llamada al header reducer', action)
   switch (action.type) {
     case HEADER_SET_TITLE:
       return {

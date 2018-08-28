@@ -1,8 +1,10 @@
 import React, {Component} from 'react'
-import './categories_select.scss'
+import PropTypes from 'prop-types';
 import {Link} from 'react-router-dom'
 
-export default class CategoriesSelect extends Component {
+import './categories_select.scss'
+
+class CategoriesSelect extends Component {
 
     constructor (props){
         super(props)
@@ -14,33 +16,39 @@ export default class CategoriesSelect extends Component {
         this.onOptionSelected = this.onOptionSelected.bind(this)
     }
 
+    onOptionSelected(id){
+        window.location.href = `/category/${id}`
+    }
+
     displayOrHide(){
         this.setState({
             isShowingList: !this.state.isShowingList
         });
     }
 
-    onOptionSelected(id){
-        window.location.href = `/category/${id}`
-    }
-
     render() {
         return (
-            <div className="search-info-select">
-                <div className="category-option" onClick={()=>{this.displayOrHide()}}>{this.state.selectedCategoryName}<span className="arrow-up"></span></div>
-                <div className="options-container">
-                    {this.props.categories.map((cat) => {
-                        if(this.state.isShowingList){
-                            return (
-                                <Link to={`/category/${cat.id}`}><div className="category-option" key={cat.id} >{cat.name}</div></Link>
-                            )
-                        }
-                        
-                    })}
-                </div>
+          <div className="search-info-select">
+            <div aria-hidden role="menuitem" className="category-option" onClick={()=>{this.displayOrHide()}}>
+              {this.state.selectedCategoryName}
+              <span className="arrow-up" />
             </div>
+            <div className="options-container">
+              {this.props.categories.map((cat) => {
+                    if(this.state.isShowingList){
+                        return (
+                          <Link to={`/category/${cat.id}`}><div className="category-option" key={cat.id} >{cat.name}</div></Link>
+                        )
+                    }
+                })}
+            </div>
+          </div>
         )
     }
-
-
 }
+
+CategoriesSelect.propTypes = {
+    categories: PropTypes.instanceOf(Array).isRequired
+};
+
+export default CategoriesSelect;

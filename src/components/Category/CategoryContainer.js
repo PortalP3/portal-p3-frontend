@@ -54,7 +54,8 @@ CategoryContainer.propTypes = {
   title: PropTypes.string.isRequired,
   selectedCategoryId: PropTypes.number,
   wordpressClient: PropTypes.shape(),
-  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  categories: PropTypes.arrayOf(PropTypes.shape()).isRequired,
+  dispatch: PropTypes.func.isRequired
 }
 
 export default connect(store => ({

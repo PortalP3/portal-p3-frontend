@@ -1,8 +1,7 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { MenuItem, Navbar, Nav, NavDropdown, NavItem } from 'react-bootstrap'
+import { MenuItem, Navbar, Nav } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { APP_NAME, APP_DESCRIPTION } from '../../config/constants'
 
 import './navigationBar.scss'
 import NavigationMenu from './NavigationMenu';
@@ -27,7 +26,7 @@ class NavigationBar extends Component {
     return (
       <Navbar>
         <Nav className="header">
-          <img src="/assets/images/logo.png" className="header-logo"/>
+          <img alt="" src="/assets/images/logo.png" className="header-logo" />
         </Nav>
         <Navbar.Toggle />
         <Navbar.Collapse>

@@ -44,12 +44,12 @@ class Home extends Component {
 
   render() {
     return (
-        <div className="home-container">
-          <Search />
-          <div className="home">
-            {this.getContent()}
-          </div>
+      <div className="home-container">
+        <Search />
+        <div className="home">
+          {this.getContent()}
         </div>
+      </div>
     )
   }
 

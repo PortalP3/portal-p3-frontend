@@ -8,27 +8,27 @@
   top: 0;
   //left: 50%;
   //margin-left: -40.5%;
- // right: 0;
+  // right: 0;
   //width: 100%;
   border: none;
   width: 80%;
 
-  .container{
-    padding-right: 0px;
-    padding-left: 0px;
+  .container {
+    padding-right: 0;
+    padding-left: 0;
     width: 100%;
 
-    .navbar-collapse{
-      padding-right: 0px;
-      padding-left: 0px;
+    .navbar-collapse {
+      padding-right: 0;
+      padding-left: 0;
       background-color: $color_menu_principal;
       width: 100%;
     }
 
-    .header{
+    .header {
       height: 200px;
 
-      img{
+      img {
         display: block;
         margin: 40px auto;
       }
