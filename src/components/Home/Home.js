@@ -35,7 +35,7 @@ class Home extends Component {
   getContent() {
     if(this.props.categories.length === 0) {
       return <Loading />
-    } else return <CategoryContainer title="TEMÁTICAS" />
+    } else return <CategoryContainer title="TEMÁTICAS" onError={()=>{}} />
   }
 
   updateMainComponentState(_state, title, message) {
@@ -44,12 +44,12 @@ class Home extends Component {
 
   render() {
     return (
-        <div className="home-container">
-          <Search />
-          <div className="home">
-            {this.getContent()}
-          </div>
+      <div className="home-container">
+        <Search />
+        <div className="home">
+          {this.getContent()}
         </div>
+      </div>
     )
   }
 

@@ -102,7 +102,7 @@ class Article extends Component {
 
           <ArticleNavigation categoryId={this.props.categoryId} articleId={this.props.articleId} />
 
-          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
+          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} onError={()=>{}} />
         </div>
       )
     }

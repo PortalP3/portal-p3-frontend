@@ -52,7 +52,7 @@ beforeEach(() => {
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <CategoryContainer title='testTitle' selectedCategoryId={1} wordpressClient={wordpressClient}/>
+        <CategoryContainer title='testTitle' selectedCategoryId={1} wordpressClient={wordpressClient} onError={()=>{}} />
       </MemoryRouter>
     </Provider>
   )
@@ -75,7 +75,7 @@ test('render Category subcomponents without selected category', () => {
   wrapper = mount(
     <Provider store={store}>
       <MemoryRouter>
-        <CategoryContainer title='testTitle' wordpressClient={wordpressClient}/>
+        <CategoryContainer title='testTitle' wordpressClient={wordpressClient} onError={()=>{}} />
       </MemoryRouter>
     </Provider>
   )

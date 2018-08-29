@@ -5,7 +5,7 @@ import {createStore} from 'redux'
 
 import Header from '../../../src/components/Header/Header'
 import reducers from '../../../redux/reducers/Reducers'
-import { HEADER_BACKGROUND_URL } from '../../../src/config/constants'
+import { QUESTIONS_BACKGROUND_URL, APP_NAME_MEANING, RESPONSE2 } from '../../../src/config/constants'
 
 const wrapper = mount(<Provider store={createStore(reducers)}><Header /></Provider>)
 
@@ -22,25 +22,24 @@ test('render inner div', () => {
 })
 
 test('render header title', () => {
-  let logo = wrapper.find('header').find('.logo-portal-info-container').find('.logo-portal')
-  expect(logo.find('h1').text()).toEqual('AMAWTA')
+  let logo = wrapper.find('header').find('.logo-portal')
+  expect(logo.find('h1').first().text()).toEqual(APP_NAME_MEANING)
 })
 
 test('render header subtitle in a separate paragraph', () => {
-  expect(wrapper.find('header').find('.logo-portal-info-container').find('.logo-portal').find('p')
-    .text()).toEqual('Esta plataforma tiene como objetivo el compartir conocimiento' +
-      ' crítico que pueda alimentar nuestro compromiso por la justicia social y económica')
+  expect(wrapper.find('header').find('.logo-portal-info-container').find('.logo-portal').find('p').last()
+    .text()).toEqual(RESPONSE2)
 })
 
-test('renders header background image as HEADER_BACKGROUND_URL', () => {
+test('renders header background image as QUESTIONS_BACKGROUND_URL', () => {
   
-  const newBackgroundUrl  = 'url('+HEADER_BACKGROUND_URL+')'
+  const newBackgroundUrl  = QUESTIONS_BACKGROUND_URL
   
   const wrapper = mount(
     <Provider store={createStore(reducers)}>
       <Header />
     </Provider>)
 
-  const wrapperProps = wrapper.find('Header').find('header').props()
-   expect(wrapperProps['style'].backgroundImage).toEqual(newBackgroundUrl)
+  const wrapperProps = wrapper.find('Header').find('img').props()
+  expect(wrapperProps.src).toEqual(newBackgroundUrl)
 })

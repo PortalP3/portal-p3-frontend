@@ -39,7 +39,6 @@ class Main  extends Component {
       return(<BrowserRouter id={process.env.TRACKING_ID}>
         <Switch>
           <Route exact path="/" render={() => <Home onError={this.handleError} />} />
-          <Route exact path="/categories" render={() => <CategoryContainer title="Explora Nuestras Categorías" onError={this.handleError} />} /> 
           <Route
             exact
             path="/category/:categoryId?"
@@ -50,6 +49,7 @@ class Main  extends Component {
             path="/category/:categoryId?/article/:articleId?"
             render={(props) => <Article onError={this.handleError} categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />}
           />
+          <Route exact path="/categories" render={() => <CategoryContainer title="Explora Nuestras Categorías" onError={this.handleError} />} /> 
           <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter>)

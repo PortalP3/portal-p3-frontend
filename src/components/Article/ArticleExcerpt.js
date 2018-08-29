@@ -1,30 +1,32 @@
-import React, {Component} from 'react'
+import React, { Component } from 'react'
 import PropTypes from 'prop-types'
 import renderHTML from 'react-render-html'
-import {Link} from 'react-router-dom'
-import {connect} from 'react-redux'
+import { Link } from 'react-router-dom'
+import { connect } from 'react-redux'
 
 import './articleExcerpt.scss'
 
 class ArticleExcerpt extends Component {
+  constructor(props){
+    super(props) 
+  }
 
-  constructor(props) {
-    super(props)
+  getArticle(){
+    findArticleById(this.props.id, this.props.articles)
   }
 
   render() {
-    console.log(new Date(this.props.date));
-    const options = { year: 'numeric', month: 'long', day: 'numeric' };
+    const options = { year: 'numeric', month: 'long', day: 'numeric' }
     return (
       <div className="article-excerpt col-md-6 col-sm-12">
         <div className="row">
           <div className="col-md-4 col-sm-12">
-            <img src="/assets/images/noimage.png" className=""/>
+            <img src="/assets/images/noimage.png" className="" alt="noimage" />
           </div>
           <div className="col-md-8 col-sm-12">
             <Link
               to={`/category/${this.props.categoryId}/article/${this.props.id}`}
-              onClick={() => this.props.dispatch({type: 'ARTICLE_SET_CONTENT', payload: findArticleById(props.id, props.articles)})}
+              onClick={() => this.props.dispatch({type: 'ARTICLE_SET_CONTENT', payload: this.getArticle()})}
             >
               <h2 className="article-title">{this.props.title}</h2>
             </Link>
@@ -48,9 +50,11 @@ ArticleExcerpt.propTypes = {
   title: PropTypes.string.isRequired,
   excerpt: PropTypes.string.isRequired,
   id: PropTypes.number.isRequired,
+  date: PropTypes.string.isRequired,
   categoryId: PropTypes.number.isRequired,
   dispatch: PropTypes.func.isRequired,
-  articles: PropTypes.arrayOf(PropTypes.shape()).isRequired
+  articles: PropTypes.arrayOf(PropTypes.object).isRequired,
+  authorName: PropTypes.string.isRequired
 }
 
 export default connect(store => ({

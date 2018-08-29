@@ -1,5 +1,5 @@
-import React, {Component} from 'react'
-import {connect} from 'react-redux'
+import React, { Component } from 'react'
+import { connect } from 'react-redux'
 import PropTypes from 'prop-types'
 
 import Category from './Category'
@@ -14,7 +14,6 @@ class CategoryContainer extends Component {
     super(props);
   }
 
-
   async componentDidMount() {
     if(this.props.categories.length === 0) {
       let categories = await this.props.wordpressClient.getCategories()
@@ -24,6 +23,10 @@ class CategoryContainer extends Component {
         this.props.dispatch({type: 'CATEGORY_LOAD_ALL', payload: categories.data})
       }
     }
+  }
+
+  updateMainComponentState(_state, title, message) {
+    this.props.onError(_state, title, message)
   }
 
   render() {
@@ -53,7 +56,9 @@ CategoryContainer.defaultProps = {
 CategoryContainer.propTypes = {
   title: PropTypes.string.isRequired,
   selectedCategoryId: PropTypes.number,
+  dispatch: PropTypes.func.isRequired,
   wordpressClient: PropTypes.shape(),
+  onError: PropTypes.func.isRequired,
   categories: PropTypes.arrayOf(PropTypes.shape()).isRequired
 }
 

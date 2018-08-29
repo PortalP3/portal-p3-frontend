@@ -115,7 +115,7 @@ class ArticleContainer extends Component {
             />
           ))}
 
-          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
+          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} onError={()=>{}} />
         </div>
     )}
   }

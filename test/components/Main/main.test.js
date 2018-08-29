@@ -39,8 +39,8 @@ test('render route for article', () => {
 test('renders route for PageNotFound', () => {
   const wrapper = shallow(<Main />)
 
-  expect(wrapper.find('GABrowserRouter').find('Route').at(3).props().component).toBeDefined()
-  expect(wrapper.find('GABrowserRouter').find('Route').at(3).props().component).toEqual(PageNotFound)
+  expect(wrapper.find('GABrowserRouter').find('Route').at(4).props().component).toBeDefined()
+  expect(wrapper.find('GABrowserRouter').find('Route').at(4).props().component).toEqual(PageNotFound)
 })
 
 
