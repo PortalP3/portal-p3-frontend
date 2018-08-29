@@ -23,7 +23,7 @@ export default class CategoriesSelect extends Component {
 		showCategories(){
 			return this.props.categories.map((cat) => {
 				if(this.state.isShowingList){
-						return <Link to={`/category/${cat.id}`}><div className="category-option" key={cat.id} >{cat.name}</div></Link>
+						return <Link to={`/category/${cat.id}`} key={cat.id}><div className="category-option" >{cat.name}</div></Link>
 				}
 			})
 		}

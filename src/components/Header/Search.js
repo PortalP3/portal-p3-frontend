@@ -11,7 +11,7 @@ const Search = (props) => {
         <div className="search-info-container">
           <h1 className="search-info-title">Quiero 
             <input type="text" placeholder="(escribe aquí)" />
-              más sobre:
+            más sobre:
           </h1>
           <h1 className="search-info-subtitle">entender/escribir/participar</h1>
           <h1 className="search-select-label">(escoge una categoría)</h1>
@@ -19,7 +19,6 @@ const Search = (props) => {
         </div>
       </div>
     )
-
 }
 
 Search.propTypes = {
