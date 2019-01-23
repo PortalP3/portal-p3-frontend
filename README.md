@@ -7,6 +7,6 @@ This is the frontend of Portal P3.
 To run the system in development mode do:
 
 ```bash
-$ make install-dependencies
+$ npm i
 $ npm start
 ```
