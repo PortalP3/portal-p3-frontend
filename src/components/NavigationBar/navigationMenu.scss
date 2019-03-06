@@ -1,0 +1,11 @@
+@import 'src/utilities/_variables';
+
+.navbar {
+  .navbar-nav {
+    float: inherit;
+
+    li {
+      padding: 0 8%;
+    }
+  }
+}

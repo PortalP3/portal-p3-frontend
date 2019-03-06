@@ -11,7 +11,7 @@ const store = createStore(reducers)
 const wrapper = mount(
   <Provider store={store}>
     <MemoryRouter>
-      <ArticleExcerpt id={1} categoryId={1} title='title' excerpt='<p>excerpt</p>' />
+      <ArticleExcerpt id={1} categoryId={1} date={'2018-02-02T14:19:11'} authorName={"author_name"} title='title' excerpt='<p>excerpt</p>' />
     </MemoryRouter>
   </Provider>
 )

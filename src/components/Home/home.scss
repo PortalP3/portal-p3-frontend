@@ -1,5 +1,10 @@
 @import "src/utilities/_variables";
 
+.home-container {
+  width: 80%;
+  margin: 0 auto;
+}
+
 .home {
   background: #341530;
   display: flex;

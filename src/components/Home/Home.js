@@ -6,6 +6,7 @@ import CategoryContainer from '../Category/CategoryContainer'
 import Loading from '../Loading/Loading'
 
 import WordpressClient from '../../clients/WordpressClient'
+import Search from '../Header/Search'
 
 import './home.scss'
 import '../Loading/loading.scss'
@@ -34,7 +35,7 @@ class Home extends Component {
   getContent() {
     if(this.props.categories.length === 0) {
       return <Loading />
-    } else return <CategoryContainer title="TEMÁTICAS" />
+    } else return <CategoryContainer title="TEMÁTICAS" onError={()=>{}} />
   }
 
   updateMainComponentState(_state, title, message) {
@@ -43,8 +44,11 @@ class Home extends Component {
 
   render() {
     return (
-      <div className="home">
-        {this.getContent()}
+      <div className="home-container">
+        <Search />
+        <div className="home">
+          {this.getContent()}
+        </div>
       </div>
     )
   }

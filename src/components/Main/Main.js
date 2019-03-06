@@ -10,6 +10,7 @@ import PageNotFound from '../PageNotFound/PageNotFound'
 import InternalError from '../InternalError/InternalError'
 
 import './main.scss'
+import CategoryContainer from '../Category/CategoryContainer';
 
 class Main  extends Component { 
 
@@ -48,6 +49,7 @@ class Main  extends Component {
             path="/category/:categoryId?/article/:articleId?"
             render={(props) => <Article onError={this.handleError} categoryId={parseInt(props.match.params.categoryId)} articleId={parseInt(props.match.params.articleId)} />}
           />
+          <Route exact path="/categories" render={() => <CategoryContainer title="Explora Nuestras Categorías" onError={this.handleError} />} /> 
           <Route component={PageNotFound} />
         </Switch>
       </BrowserRouter>)

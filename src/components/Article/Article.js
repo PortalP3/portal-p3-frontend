@@ -79,8 +79,8 @@ class Article extends Component {
       return (<PageNotFound />)
     }else {
       return (
-        <div className="article-container">
-          <div className="article">
+        <div className="article-container container">
+          <div className="article row">
 
             <div className="back-to-category">
               <Link to={`/category/${this.props.categoryId}`}>&laquo; Volver a {this.capitalizeString(this.props.headerTitle)}</Link>
@@ -102,7 +102,7 @@ class Article extends Component {
 
           <ArticleNavigation categoryId={this.props.categoryId} articleId={this.props.articleId} />
 
-          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
+          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} onError={()=>{}} />
         </div>
       )
     }

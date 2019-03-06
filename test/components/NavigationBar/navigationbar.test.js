@@ -51,12 +51,6 @@ test('navigation bar should have the correct structure', () => {
   const onlyone = 1;
   expect(wrapper.find('Navbar')).toHaveLength(onlyone)
   expect(wrapper.find('Nav')).toHaveLength(onlyone)
-  expect(wrapper.find('NavDropdown')).toHaveLength(onlyone)
-})
-
-test('renders a menuitem for each category in navigation bar', () => { 
-  wrapper.update()
-  expect(wrapper.find('MenuItem')).toHaveLength(categories.data.length+2)
 })
 
 test('renders category names in menuitems', () => {
@@ -86,8 +80,4 @@ test('renders category divider', () => {
       expect(item.props()['divider']).toBeTruthy()
     }
   })
-})
-
-test('renders app name as dropdown title', () => {
-  expect(wrapper.find('NavDropdown').props()['title']).toEqual(APP_NAME)
 })

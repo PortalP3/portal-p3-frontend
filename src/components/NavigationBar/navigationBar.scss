@@ -1,15 +1,48 @@
 @import "src/utilities/_variables";
 
 .navbar {
+  display: flex;
+  align-self: center;
   position: fixed;
-  background: $dark_gray;
+  background: $yellow_banner;
   top: 0;
-  right: 0;
-  width: 100%;
   border: none;
+  width: 80%;
+
+  .container {
+    padding-right: 0;
+    padding-left: 0;
+    width: 100%;
+
+    .navbar-collapse {
+      padding-right: 0;
+      padding-left: 0;
+      background-color: $color_menu_principal;
+      width: 100%;
+    }
+
+    .header {
+      height: 200px;
+    }
+
+    img.header-logo {
+      display: block;
+      margin: 3em auto;
+    }
+  }
 
   .navbar-nav {
-    float: right;
+    float: left;
+
+    li.dropdown {
+      padding: 0 0 0 8%;
+    }
+
+    span {
+      color: #f2f2f2;
+      padding: 15px 0;
+      display: table-cell;
+    }
 
     span.caret {
       display: none;

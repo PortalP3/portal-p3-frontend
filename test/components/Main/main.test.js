@@ -5,10 +5,12 @@ import reducers from '../../../redux/reducers/Reducers'
 import Main from '../../../src/components/Main/Main'
 import PageNotFound from '../../../src/components/PageNotFound/PageNotFound';
 
+global.process.env.TRACKING_ID = 'aaaaaa'
+
 test('render BrowserRouter', () => {
   const wrapper = shallow(<Main />)
 
-  console.log('id', wrapper.props());
+  console.log(wrapper.debug());
 
   expect(wrapper.find('GABrowserRouter')).toHaveLength(1)
 })
@@ -37,8 +39,8 @@ test('render route for article', () => {
 test('renders route for PageNotFound', () => {
   const wrapper = shallow(<Main />)
 
-  expect(wrapper.find('GABrowserRouter').find('Route').at(3).props().component).toBeDefined()
-  expect(wrapper.find('GABrowserRouter').find('Route').at(3).props().component).toEqual(PageNotFound)
+  expect(wrapper.find('GABrowserRouter').find('Route').at(4).props().component).toBeDefined()
+  expect(wrapper.find('GABrowserRouter').find('Route').at(4).props().component).toEqual(PageNotFound)
 })
 
 

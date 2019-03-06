@@ -1,8 +1,25 @@
 @import "src/utilities/_variables";
 
 .article-excerpt {
-  color: #3e203d;
-  background: $article_background;
+  color: #000;
   padding: 5px 20px;
   margin: 20px 0;
+
+  a {
+    color: #46dfba;
+  }
+
+  .article-title {
+    margin-top: 0;
+  }
+
+  .article-date {
+    color: #909090;
+    padding: 5px 0;
+    font-size: 20px;
+  }
+
+  .article-author {
+    color: #668b42;
+  }
 }
