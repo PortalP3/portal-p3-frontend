@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import renderHTML from 'react-render-html'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
+
 import Notifications from '../Notifications/Notifications'
 import PageNotFound from '../PageNotFound/PageNotFound'
 
@@ -16,7 +18,6 @@ import { HEADER_SET_BACKGROUND } from '../../../redux/actions/actionTypes'
 import './articleContainer.scss'
 import './article.scss'
 import '../Category/categoryContainer.scss'
-import moment from 'moment'
 
 class Article extends Component {
 
