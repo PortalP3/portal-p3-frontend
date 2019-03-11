@@ -16,6 +16,7 @@ import { HEADER_SET_BACKGROUND } from '../../../redux/actions/actionTypes'
 import './articleContainer.scss'
 import './article.scss'
 import '../Category/categoryContainer.scss'
+import moment from 'moment'
 
 class Article extends Component {
 
@@ -88,8 +89,8 @@ class Article extends Component {
 
             <h1>{this.props.content.title.rendered}</h1>
             <div className="article-meta">
-              <span>Fecha de creación: {new Date(this.props.content.date).toLocaleDateString('es-ES')}</span>
-              <span>Fecha de modificación: {new Date(this.props.content.modified).toLocaleDateString('es-ES')}</span>
+              <span>Fecha de creación: {moment(this.props.content.date).format('D/M/YYYY')}</span>
+              <span>Fecha de modificación: {moment(this.props.content.modified).format('D/M/YYYY')}</span>
               <span>Autor: {this.props.content.author_name}</span>
             </div>
             {renderHTML(this.props.content.content.rendered)}

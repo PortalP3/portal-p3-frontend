@@ -1,5 +1,7 @@
 install-dependencies:
 	yarn install --ignore-scripts
+	node node_modules/node-sass/scripts/install.js
+	npm rebuild node-sass
 
 lint:
 	yarn lint-js
