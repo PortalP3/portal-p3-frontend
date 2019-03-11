@@ -1,0 +1,55 @@
+@import "src/utilities/_variables";
+
+.search {
+  background-color: $search_container;
+
+  .search-info-container {
+    width: 100%;
+    padding: 80px 100px 20px 80px;
+
+    .search-info-title {
+      font-size: 64px;
+      font-weight: bolder;
+      text-align: center;
+      color: #000;
+
+      input {
+        font-size: 42px;
+        border: 0;
+        border-bottom: 2px solid #000;
+        border-style: dashed;
+        background: transparent;
+        font-style: italic;
+        margin: 0 20px;
+        text-align: center;
+        padding: 0 20px 10px;
+      }
+
+      input:focus {
+        outline: 0;
+      }
+
+      input::placeholder {
+        font-size: 24px;
+        font-weight: normal;
+        color: #000;
+      }
+    }
+
+    .search-info-subtitle {
+      text-align: center;
+      margin-top: 0;
+      margin-right: 120px;
+      color: #000;
+      font-weight: bolder;
+    }
+
+    .search-select-label {
+      text-align: center;
+      color: #000;
+      font-style: italic;
+      font-weight: normal;
+      font-size: 24px;
+    }
+  }
+}

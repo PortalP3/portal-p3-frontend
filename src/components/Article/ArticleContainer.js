@@ -101,7 +101,7 @@ class ArticleContainer extends Component {
       return (<PageNotFound />)
     } else{
       return (
-        <div className="article-container">
+        <div className="article-container container">
           {this.props.articles.map(article => (
             <ArticleExcerpt
               key={article.id}
@@ -109,11 +109,13 @@ class ArticleContainer extends Component {
               title={article.title.rendered}
               excerpt={article.excerpt.rendered}
               authorId={article.author}
+              date={article.date}
+              authorName={article.author_name}
               categoryId={this.props.categoryId}
             />
           ))}
 
-          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
+          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} onError={()=>{}} />
         </div>
     )}
   }

@@ -5,7 +5,7 @@ machine:
 jobs:
   build:
     docker:
-      - image: base/archlinux:latest
+      - image: archlinux/base:latest
 
     working_directory: ~/portal-p3-frontend
 

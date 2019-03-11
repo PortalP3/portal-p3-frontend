@@ -3,12 +3,13 @@
 
 body {
   margin: 0;
-  background: $body_background;
+  //background: $body_background;
   font-family: $font_family;
 }
 
 .app {
   display: flex;
+  flex-flow: row wrap;
   justify-content: center;
   flex-direction: column;
 }

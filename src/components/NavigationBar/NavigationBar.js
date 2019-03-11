@@ -1,10 +1,10 @@
 import React, { Component } from 'react'
 import PropTypes from 'prop-types'
-import { MenuItem, Navbar, Nav, NavDropdown } from 'react-bootstrap'
+import { MenuItem, Navbar } from 'react-bootstrap'
 import { connect } from 'react-redux'
-import { APP_NAME } from '../../config/constants'
 
 import './navigationBar.scss'
+import NavigationMenu from './NavigationMenu';
 
 
 class NavigationBar extends Component {
@@ -25,13 +25,11 @@ class NavigationBar extends Component {
   render() {
     return (
       <Navbar>
-        <Nav>
-          <NavDropdown title={APP_NAME} id="0">
-            <MenuItem  href="/">INICIO</MenuItem>
-            <MenuItem divider />
-            {this.displayItems()}
-          </NavDropdown>
-        </Nav>
+        <img src="/assets/images/logo.png" className="header-logo" alt="logo" />
+        <Navbar.Toggle />
+        <Navbar.Collapse>
+          <NavigationMenu />
+        </Navbar.Collapse>
       </Navbar>
     )
   }

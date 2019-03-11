@@ -3,6 +3,8 @@ import {connect} from 'react-redux'
 import PropTypes from 'prop-types'
 import renderHTML from 'react-render-html'
 import {Link} from 'react-router-dom'
+import moment from 'moment'
+
 import Notifications from '../Notifications/Notifications'
 import PageNotFound from '../PageNotFound/PageNotFound'
 
@@ -79,8 +81,8 @@ class Article extends Component {
       return (<PageNotFound />)
     }else {
       return (
-        <div className="article-container">
-          <div className="article">
+        <div className="article-container container">
+          <div className="article row">
 
             <div className="back-to-category">
               <Link to={`/category/${this.props.categoryId}`}>&laquo; Volver a {this.capitalizeString(this.props.headerTitle)}</Link>
@@ -88,8 +90,8 @@ class Article extends Component {
 
             <h1>{this.props.content.title.rendered}</h1>
             <div className="article-meta">
-              <span>Fecha de creación: {new Date(this.props.content.date).toLocaleDateString('es-ES')}</span>
-              <span>Fecha de modificación: {new Date(this.props.content.modified).toLocaleDateString('es-ES')}</span>
+              <span>Fecha de creación: {moment(this.props.content.date).format('D/M/YYYY')}</span>
+              <span>Fecha de modificación: {moment(this.props.content.modified).format('D/M/YYYY')}</span>
               <span>Autor: {this.props.content.author_name}</span>
             </div>
             {renderHTML(this.props.content.content.rendered)}
@@ -102,7 +104,7 @@ class Article extends Component {
 
           <ArticleNavigation categoryId={this.props.categoryId} articleId={this.props.articleId} />
 
-          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} />
+          <CategoryContainer title="OTRAS TEMÁTICAS" selectedCategoryId={this.props.categoryId} onError={()=>{}} />
         </div>
       )
     }
